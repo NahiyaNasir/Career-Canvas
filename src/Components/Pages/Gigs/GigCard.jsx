@@ -32,6 +32,7 @@ const GigCard = ({gigCard}) => {
   
  
   return (
+    
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
      <Link to={`/gig-details/${gigCard?._id}`}>
       <img
@@ -57,12 +58,15 @@ const GigCard = ({gigCard}) => {
         </p>
         <div className="flex justify-between items-center mt-4">
           <span className="font-semibold text-green-600">Rating: ⭐⭐⭐⭐</span>
+          <Link to={`/gig-details/${gigCard?._id}`}>
+          
           <button
-            onClick={openModal}
+            // onClick={openModal}
             className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-200"
           >
             View Details
           </button>
+          </Link>
         </div>
       </div>
 
@@ -102,11 +106,7 @@ const GigCard = ({gigCard}) => {
                 {gigCard?.userName}</span>
                 </Link>
             </div>
-            <p className="text-gray-800 mb-2">
-              <strong>Project Details:</strong>
-              <br />
-              {gigCard?.projectDetails}
-            </p>
+            
             <p className="text-gray-800 mb-2">
               <strong>Skills Required:</strong>{" "}
               <span className="text-green-500">
@@ -129,9 +129,7 @@ const GigCard = ({gigCard}) => {
                 {gigCard?.contactInfo?.phone}
               </span>
             </p>
-            <p className="text-gray-800 mb-2">
-              <strong>FAQs:</strong>
-            </p>
+           
             <ul className="list-disc pl-5 text-gray-800">
               {gigCard?.faqs?.map((faq, index) => (
                 <li key={index}>
