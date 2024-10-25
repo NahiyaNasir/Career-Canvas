@@ -36,6 +36,7 @@ import CreateGig from "../Pages/Gigs/gigrfom";
 
 import GigSelector from "../Pages/Gigs/GigSelector";
 import AnimatedHoverCard from "../Pages/Dashboard/AnimatedHoverCard/AnimatedHoverCard";
+import GigDetails from "../Pages/Gigs/gigDetails";
 
 
 const router = createBrowserRouter([
@@ -119,6 +120,11 @@ const router = createBrowserRouter([
         path: "/applyJob",
         element: <PrivateRouter><ApplyJob></ApplyJob></PrivateRouter>
       },
+      {
+        path:"/gig-details/:id",
+        element:<GigDetails></GigDetails>
+      }
+
      
 
     ]

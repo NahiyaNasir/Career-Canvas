@@ -1,88 +1,119 @@
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import useAxiosPublic from '../../../Hooks/AxiosHooks/useAxiosPublic';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
+const GigDetails = () => {
+  const axiosPublic = useAxiosPublic();
+  const [gigsCards, setGigsCards] = useState([]);
+  const [matchedGig, setMatchedGig] = useState(null);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const handleBack=()=>{
+    navigate('/gig-section')
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axiosPublic.get('/api/gig');
+        setGigsCards(res.data);
+        const gig = res.data.find(gig => gig._id === id);
+        setMatchedGig(gig);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [axiosPublic, id]);
 
-const GigDetails = ({
-    gigData: {
-        title,
-        userImage,
-        projectImages,
-        userName,
-        projectDetail,
-        skills,
-        contactInfo,
-        faq,
-        reviews,
-        rating,
-        date,
-    },
-}) => {
-    return (
-        <div className="bg-gray-100 py-8">
-            <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-                <div className="flex items-center p-6 bg-green-500">
-                    <img
-                        src={userImage}
-                        alt="User"
-                        className="w-16 h-16 rounded-full border-2 border-white shadow-md"
-                    />
-                    <div className="ml-4">
-                        <h1 className="text-3xl font-bold text-white">{title}</h1>
-                        <h2 className="text-xl text-white">by {userName}</h2>
-                        <p className="text-sm text-gray-200">Posted on: {new Date(date).toLocaleDateString()}</p>
-                    </div>
-                </div>
+  return (
+    <div className="p-8 max-w-4xl mx-auto bg-white shadow-xl rounded-2xl border border-green-500">
+      {matchedGig ? (
+        <div>
+          {/* Profile Section */}
+          <div className="text-center mb-8">
+            <img
+              className="w-32 h-32 rounded-full mx-auto border-4 border-green-500 shadow-lg"
+              src={matchedGig.userImage}
+              alt={`${matchedGig.userName}'s profile`}
+            />
+            <h1 className="text-3xl font-extrabold text-green-600 mt-4">{matchedGig.title}</h1>
+            <p className="text-gray-500 italic">Posted by {matchedGig.userName}</p>
+          </div>
+          
+          {/* Project Details */}
+          <div className="mb-6 bg-green-50 p-6 rounded-lg shadow-md border border-green-200">
+            <h2 className="text-2xl font-semibold text-green-700">Project Details</h2>
+            <p className="text-gray-700 mt-3">{matchedGig.projectDetail}</p>
+          </div>
+          
+          {/* Contact Information */}
+          <div className="mb-6 bg-green-50 p-6 rounded-lg shadow-md border border-green-200">
+            <h2 className="text-2xl font-semibold text-green-700">Contact Information</h2>
+            <p className="text-gray-700 mt-3">Email: <span className="text-green-600">{matchedGig.contactInfo.email}</span></p>
+            <p className="text-gray-700">Phone: <span className="text-green-600">{matchedGig.contactInfo.phone}</span></p>
+          </div>
 
-                <div className="p-6">
-                    <h3 className="text-2xl font-semibold text-green-800 mb-2">Project Details</h3>
-                    <p className="text-gray-700 mb-4">{projectDetail}</p>
+          {/* Skills Required */}
+          <div className="mb-6 bg-green-50 p-6 rounded-lg shadow-md border border-green-200">
+            <h2 className="text-2xl font-semibold text-green-700">Skills Required</h2>
+            <ul className="flex flex-wrap gap-3 mt-3">
+              {matchedGig.skills.map((skill, index) => (
+                <li
+                  key={index}
+                  className="bg-green-600 text-white px-4 py-2 rounded-full shadow-md text-sm"
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                    <h3 className="text-2xl font-semibold text-green-800 mb-2">Skills</h3>
-                    <ul className="list-disc list-inside mb-4 text-gray-700">
-                        {skills.map((skill, index) => (
-                            <li key={index}>{skill}</li>
-                        ))}
-                    </ul>
-
-                    <h3 className="text-2xl font-semibold text-green-800 mb-2">Images</h3>
-                    <Swiper spaceBetween={20} slidesPerView={1} pagination={{ clickable: true }} className="mb-4">
-                        {projectImages.map((image, index) => (
-                            <SwiperSlide key={index}>
-                                <img src={image} alt={`Project Image ${index + 1}`} className="rounded-lg shadow-md" />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-
-                    <h3 className="text-2xl font-semibold text-green-800 mb-2">Contact Information</h3>
-                    <p className="text-gray-700 mb-2">Email: {contactInfo.email}</p>
-                    <p className="text-gray-700">Phone: {contactInfo.phone || 'N/A'}</p>
-
-                    <h3 className="text-2xl font-semibold text-green-800 mb-2">FAQs</h3>
-                    <div className="border-t border-gray-300 pt-4">
-                        {faq.map((item, index) => (
-                            <div key={index} className="mb-4">
-                                <h4 className="font-semibold text-gray-700">{item.question}</h4>
-                                <p className="text-gray-600">{item.answer}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <h3 className="text-2xl font-semibold text-green-800 mb-2">Reviews</h3>
-                    <div className="border-t border-gray-300 pt-4">
-                        {reviews.map((review, index) => (
-                            <div key={index} className="mb-4">
-                                <p className="font-semibold text-gray-700">User {index + 1}</p>
-                                <p className="text-gray-600">{review.comment}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <h3 className="text-2xl font-semibold text-green-800 mb-2">Rating</h3>
-                    <p className="text-yellow-500 text-3xl mb-4">{'★'.repeat(Math.round(rating))}{'☆'.repeat(5 - Math.round(rating))}</p>
-                </div>
+          {/* Gallery */}
+          <div className="mb-6 bg-green-50 p-6 rounded-lg shadow-md border border-green-200">
+            <h2 className="text-2xl font-semibold text-green-700">Project Gallery</h2>
+            <div className="flex gap-4 mt-4 overflow-x-auto">
+              {matchedGig.projectImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt="Project visual"
+                  className="w-1/3 rounded-lg border-2 border-green-300 shadow-md"
+                />
+              ))}
             </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mb-6 bg-green-50 p-6 rounded-lg shadow-md border border-green-200">
+            <h2 className="text-2xl font-semibold text-green-700">FAQs</h2>
+            {matchedGig.faq && matchedGig.faq.length > 0 ? (
+              <ul className="mt-4 space-y-3">
+                {matchedGig.faq.map((item, index) => (
+                  <li key={index} className="text-gray-700">
+                    <p className="font-bold text-green-600">Q: {item.question}</p>
+                    <p className="ml-4 text-gray-600">A: {item.answer}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-500">No FAQs available.</p>
+            )}
+          </div>
+          
+          {/* Last Updated */}
+          <div className="text-center mt-8">
+            <p className="text-sm text-gray-500">Last Updated: {new Date(matchedGig.updatedAt).toLocaleDateString()}</p>
+          </div>
+          <div className='flex justify-center m-4'>
+            <h1 onClick={handleBack} className='text-white text-xl rounded-lg bg-green-500 text-center btn w-1/4'>Back</h1>
+          </div>
         </div>
-    );
+        
+      ) : (
+        <p className="text-center text-gray-500">Loading gig details...</p>
+      )}
+    </div>
+  );
 };
 
 export default GigDetails;

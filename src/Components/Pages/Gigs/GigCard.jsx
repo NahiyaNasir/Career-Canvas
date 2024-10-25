@@ -1,13 +1,16 @@
 
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const GigCard = ({gigCard}) => {
+  const navigate = useNavigate();
+  // console.log(gigCard._id)
   // console.log(gigCard);
     // eslint-disable-next-line no-unused-vars
     const {projectImages,Image,userName,title,}=gigCard
   const [isModalOpen, setIsModalOpen] = useState(false);
  
- 
+   
 
 
   const openModal = () => {
@@ -30,19 +33,23 @@ const GigCard = ({gigCard}) => {
  
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+     <Link to={`/gig-details/${gigCard?._id}`}>
       <img
         className="w-full h-48 object-cover"
         src={gigCard?.projectImages[0]}
         alt="Project"
       />
+     </Link>
       <div className="px-6 py-4">
         <div className="flex items-center mb-4">
+          <Link to={`/gig-details/${gigCard?._id}`}>
           <img
             className="w-10 h-10 rounded-full mr-2"
             src={gigCard?.userImage}
             alt="User Avatar"
           />
-          <span className="font-bold text-lg">{gigCard?.userName}</span>
+          </Link>
+          <Link to={`/gig-details/${gigCard?._id}`}> <span className="font-bold text-lg">{gigCard?.userName}</span></Link>
         </div>
         <div className="font-bold text-xl mb-2">{gigCard?.title}</div>
         <p className="text-gray-700 text-base">
@@ -70,20 +77,30 @@ const GigCard = ({gigCard}) => {
               &times;
             </span>
             <h2 className="text-2xl font-bold mb-4 text-green-600">
+              <Link to={`/gig-details/${gigCard?._id}`}>
               {gigCard?.title}
+              </Link>
             </h2>
+            <Link to={`/gig-details/${gigCard?._id}`}>
             <img
               className="w-full h-48 object-cover mb-4 rounded-lg"
               src={gigCard?.projectImages[0]}
               alt="Project"
             />
+            </Link>
             <div className="flex items-center mb-4">
+              <Link to={`/gig-details/${gigCard?._id}`}>
               <img
                 className="w-10 h-10 rounded-full mr-2"
                 src={gigCard?.userImage}
                 alt="User Avatar"
               />
-              <span className="font-bold text-lg">{gigCard?.userName}</span>
+              </Link>
+                <Link to={`/gig-details/${gigCard?._id}`}>
+              <span className="font-bold text-lg">
+
+                {gigCard?.userName}</span>
+                </Link>
             </div>
             <p className="text-gray-800 mb-2">
               <strong>Project Details:</strong>
