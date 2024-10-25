@@ -76,7 +76,7 @@ const Chat = () => {
                 {chatMessages.map((msg, index) => (
                     <div
                         key={index}
-                        className={`my-2 p-2 rounded-lg shadow ${msg.sender === 'user' ? 'bg-green-200 text-right' : 'bg-gray-300'}`}
+                        className={`my-2 p-2 text-xl rounded-lg shadow ${msg.sender === 'user' ? 'bg-green-200 text-right' : 'bg-gray-300'}`}
                     >
                         {parseText(msg.message)} {/* Use parseText here */}
                     </div>
@@ -88,7 +88,7 @@ const Chat = () => {
                         placeholder="Type your message..."
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        className="flex-1 p-2 border border-gray-300 rounded w-full resize-none"
+                        className="flex-1 p-2 text-2xl border border-gray-300 rounded w-full resize-none"
                         rows={4}
                         onKeyDown={(e) => e.key === 'Enter' && e.shiftKey ? (setIsTextarea(true), e.preventDefault()) : null}
                     />
@@ -98,7 +98,7 @@ const Chat = () => {
                         placeholder="Type your message..."
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        className="flex-1 p-2 border border-gray-300 rounded w-full"
+                        className="flex-1 p-2 text-2xl border border-gray-300 rounded w-full"
                         onKeyDown={(e) => e.key === 'Enter' && e.shiftKey ? (setIsTextarea(true), e.preventDefault()) : null}
                     />
                 )}
