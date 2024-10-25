@@ -1,6 +1,6 @@
 # Career Canvas
 
-[Live link](https://my-project-260624.web.app/)
+[Live link]()
 
 ```
 admin email : arafat1@gmail.com
@@ -8,6 +8,44 @@ admin email : arafat1@gmail.com
 admin pass : Arafat@
 
 ```
+
+
+## Features
+
+-.Customizable Resume Templates
+- Drag and Drop Resume Details
+- Newsletters: Subscription options for daily or weekly news summaries .
+- Download & Export Resume
+- Share Resume
+- Resume Review Service
+- Job Postings as Blogs
+- Search Jobs
+- Save Job Posts
+- Resume Version Control
+- AI integration
+- User Dashboard
+- Admin Dashboard
+- Post Jobs
+- Approve/Reject Job Applications
+- User Management
+- Chat Support
+-   Share project
+- payment gateway
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
