@@ -5,7 +5,7 @@ const axiosPublic = axios.create({
   
   baseURL: "https://careen-canvas-server.vercel.app",
 
-
+});
 const useAxiosPublic = () => {
   return axiosPublic;
 };

@@ -1,5 +1,5 @@
 // src/Chat.js
-import React, { useEffect, useContext, useRef, useState } from 'react';
+import  { useEffect, useContext, useRef, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const Chat = () => {
@@ -46,7 +46,7 @@ const Chat = () => {
         if (chatBoxRef.current) {
             chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
         }
-    }, [user, chatMessages]); // Dependency array includes user and chatMessages
+    }, [user, chatMessages , clearChatMessages]); // Dependency array includes user and chatMessages
 
     return (
         <div className="w-full md:w-11/12 lg:w-11/12 mt-12 md:mt-18 lg:mt-24 mx-auto bg-white shadow-lg p-4 rounded-lg">
