@@ -158,7 +158,7 @@ const GigSelector = () => {
             </div>
 
             {/* Display Gig Cards */}
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mt-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4 mt-6">
                 {gigsCards.map(gigCard => (
                     <GigCard key={gigCard._id} gigCard={gigCard}></GigCard>
                 ))}
