@@ -4,6 +4,24 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Chat = () => {
     const { user, chatMessages, addChatMessage, clearChatMessages } = useContext(AuthContext);
+
+    // Function to parse and format the text
+    const parseText = (text) => {
+        const lines = text.split('\n');
+        return lines.map((line, index) => {
+            if (line.startsWith('**')) {
+                return <strong key={index}>{line.replace(/\*\*/g, '')}</strong>;
+            }
+            if (line.startsWith('*')) {
+                return <li key={index}>{line.replace(/\*/g, '').trim()}</li>;
+            }
+            if (line.startsWith('##')) {
+                return <h2 key={index}>{line.replace(/## /, '')}</h2>;
+            }
+            return <p key={index}>{line}</p>;
+        });
+    };
+
     const [input, setInput] = useState('');
     const chatBoxRef = useRef(null);
     const [isTextarea, setIsTextarea] = useState(false);
@@ -58,10 +76,9 @@ const Chat = () => {
                 {chatMessages.map((msg, index) => (
                     <div
                         key={index}
-                        className={`my-2 p-2 rounded-lg shadow ${msg.sender === 'user' ? 'bg-green-200 text-right' : 'bg-gray-300'
-                            }`}
+                        className={`my-2 p-2 rounded-lg shadow ${msg.sender === 'user' ? 'bg-green-200 text-right' : 'bg-gray-300'}`}
                     >
-                        {msg.message}
+                        {parseText(msg.message)} {/* Use parseText here */}
                     </div>
                 ))}
             </div>
