@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useAxiosPublic from "../../../../Hooks/AxiosHooks/useAxiosPublic";
+import { Link } from "react-router-dom";
 
 const AnimatedHoverCard = () => {
     const [savedJobs, setSavedJobs] = useState([]); // Initialize an empty array to store saved jobs
@@ -55,7 +56,11 @@ const AnimatedHoverCard = () => {
                         </table>
                     </div>
                 ) : (
-                    <p>No saved jobs</p>
+                    <>
+                     <p className="text-4xl text-center text-green-500">No saved jobs</p>
+                     <Link to={"/"} className="text-white bg-green-300 p-5 rounded-lg">See jobs</Link>
+                    </>
+                   
                 )
             }
         </>

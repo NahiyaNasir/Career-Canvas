@@ -105,13 +105,13 @@ const GoogleDocAdvanced = () => {
       </div>
 
       {/* Options to download in different formats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-20">
-        <button
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-20">
+        {/* <button
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
           onClick={downloadPdf}
         >
           Download as PDF
-        </button>
+        </button> */}
         <button
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
           onClick={downloadDocx}

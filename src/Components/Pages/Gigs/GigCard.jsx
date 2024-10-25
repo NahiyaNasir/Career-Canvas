@@ -122,7 +122,7 @@ const GigCard = ({gigCard}) => {
                 </li>
               ))}
             </ul>
-            <div className="flex justify-between mt-4">
+            {/* <div className="flex justify-between mt-4">
               <button
                 onClick={giveRating}
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
@@ -135,7 +135,7 @@ const GigCard = ({gigCard}) => {
               >
                 Check Reviews
               </button>
-            </div>
+            </div> */}
             <button
               onClick={closeModal}
               className="mt-4 w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
