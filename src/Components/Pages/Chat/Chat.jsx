@@ -71,7 +71,7 @@ const Chat = () => {
             <h1 className="text-3xl font-bold text-green-800 text-center mb-4">AI Chatbot</h1>
             <div
                 ref={chatBoxRef}
-                className="h-96 overflow-y-auto p-4 bg-gray-100 rounded-lg mb-4"
+                className="min-h-[44rem] overflow-y-auto p-4 bg-gray-100 rounded-lg mb-4"
             >
                 {chatMessages.map((msg, index) => (
                     <div
