@@ -79,31 +79,31 @@ const GigSelector = () => {
 
     return (
         <div className="container mx-auto p-8">
-            <h1 className="text-3xl font-bold mb-6 text-green-600">Select a Gig</h1>
+            <h1 className="text-3xl  font-bold mb-6 text-green-600">Select a Gig</h1>
 
             {/* Filter Form */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-white p-6 rounded-lg shadow-md">
                 {/* Search Input */}
                 <div>
-                    <label htmlFor="searchInput" className="block font-medium text-gray-700">Search for Gigs</label>
+                    <label htmlFor="searchInput" className="block font-medium text-gray-700 text-xl ">Search for Gigs</label>
                     <input
                         type="text"
                         id="searchInput"
                         placeholder="Type to search..."
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 text-xl block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                     />
                 </div>
 
                 {/* Skills Selection */}
                 <div>
-                    <label htmlFor="skillsSelect" className="block font-medium text-gray-700">Select Skills</label>
+                    <label htmlFor="skillsSelect" className="block font-medium text-gray-700 text-xl ">Select Skills</label>
                     <select
                         id="skillsSelect"
                         value={selectedSkills}
                         onChange={(e) => setSelectedSkills(e.target.value)}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 text-xl  block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                     >
                         <option value="">Select skills</option>
                         {availableSkills.map((skill, index) => (
@@ -116,12 +116,12 @@ const GigSelector = () => {
 
                 {/* Rating Selection */}
                 <div>
-                    <label htmlFor="ratingSelect" className="block font-medium text-gray-700">Select Rating</label>
+                    <label htmlFor="ratingSelect" className="block font-medium text-gray-700 text-xl ">Select Rating</label>
                     <select
                         id="ratingSelect"
                         value={selectedRating}
                         onChange={(e) => setSelectedRating(e.target.value)}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 text-xl  block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                     >
                         <option value="">Select a rating</option>
                         {[1, 2, 3, 4, 5].map(rating => (
@@ -134,25 +134,25 @@ const GigSelector = () => {
 
                 {/* Start Date */}
                 <div>
-                    <label htmlFor="startDate" className="block font-medium text-gray-700">Start Date</label>
+                    <label htmlFor="startDate" className="block font-medium text-gray-700 text-xl ">Start Date</label>
                     <input
                         type="date"
                         id="startDate"
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block text-xl  w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                     />
                 </div>
 
                 {/* End Date */}
                 <div>
-                    <label htmlFor="endDate" className="block font-medium text-gray-700">End Date</label>
+                    <label htmlFor="endDate" className="block font-medium text-gray-700 text-xl ">End Date</label>
                     <input
                         type="date"
                         id="endDate"
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 text-xl  block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                     />
                 </div>
             </div>
