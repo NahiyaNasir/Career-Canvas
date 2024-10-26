@@ -1,5 +1,5 @@
 // ChatBox.js
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { IoLogoSnapchat } from "react-icons/io";
 const ChatBox = () => {
