@@ -35,38 +35,37 @@ const JobsCard = ({ job }) => {
     <>
       <div
         onClick={toggleDetails}
-        className="border p-4 mb-4 rounded-lg shadow-lg hover:border-2 hover:border-green-500 cursor-pointer transition-all duration-300"
+        className="border p-5 m-2 rounded-lg shadow-md hover:shadow-xl  hover:border-b-8 hover:border-green-600 transition-all duration-300 bg-white h-56"
       >
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 space-y-2 md:space-y-0">
-          <h1 className="text-lg md:text-xl font-semibold">{jobTitle}</h1>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+          <h1 className="text-xl md:text-xl font-semibold text-gray-800 hover:text-green-600 transition duration-200 border-b-2 border-green-500">{jobTitle}</h1>
           <p className="text-gray-500 text-sm md:text-base">{location}</p>
         </div>
 
-        <div className="text-gray-700 text-sm md:text-base mb-2 break-words whitespace-pre-wrap">
-  {jobDescription}
-</div>
+        <div className="text-gray-700 text-base mb-4 break-words whitespace-pre-wrap">
+          {jobDescription}
+        </div>
 
-
-        <div className="flex flex-wrap space-x-2 mb-2">
+        <div className="flex flex-wrap space-x-2 mb-4">
           {skills.map((skill, index) => (
             <span
               key={index}
-              className="bg-green-50 text-xs md:text-sm px-3 py-1 md:py-2 text-green-500 rounded-full mb-2"
+              className="bg-green-400 text-xs text-white md:text-sm px-3 py-1 rounded-full mb-2 transition duration-200 hover:bg-green-200"
             >
               {skill}
             </span>
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-gray-500 text-sm md:text-base">
-          <p>
-            {employmentType} - {remoteOption}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-gray-600 text-sm md:text-base">
+          <p className="">
+            {employmentType} - <span className="font-semibold text-green-500">{remoteOption}</span>
           </p>
           <p>
-            Experience: {experience ? `${experience} Years` : "No Experience Needed"}
+            Experience: <span className="font-semibold">{experience ? `${experience} Years` : "No Experience Needed"}</span>
           </p>
-          <p>Company: {company}</p>
-          <p className="text-green-500 mt-2 md:mt-0">{salaryRange}</p>
+          <p>Company: <span className="font-semibold">{company}</span></p>
+          <p className="text-green-600 font-bold mt-2 md:mt-0">{salaryRange} tk</p>
         </div>
       </div>
 
