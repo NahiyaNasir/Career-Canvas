@@ -33,7 +33,7 @@ const GigCard = ({gigCard}) => {
  
   return (
     
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+    <div className="max-w-lg rounded overflow-hidden shadow-lg bg-white ">
      <Link to={`/gig-details/${gigCard?._id}`}>
       <img
         className="w-full h-48 object-cover"
