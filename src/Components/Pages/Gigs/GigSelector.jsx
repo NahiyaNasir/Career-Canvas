@@ -77,7 +77,7 @@ const GigSelector = () => {
             setCurrentPage(prevPage => prevPage - 1);
         }
     };
-
+ 
     return (
         <div className="container mx-auto m-12">
             {/* Search Input */}
@@ -183,7 +183,10 @@ const GigSelector = () => {
                     ))
                     : gigsCards.map(gigCard => (
                         <GigCard key={gigCard._id} gigCard={gigCard}></GigCard>
-                    ))}
+                    )
+                    
+                    )
+                    }
             </div>
           
             {/* Pagination Controls */}

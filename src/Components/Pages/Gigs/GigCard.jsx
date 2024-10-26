@@ -1,9 +1,23 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const GigCard = ({ gigCard }) => {
   const navigate = useNavigate();
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+
+  useEffect(() => {
+      // Function to check screen width
+      const handleResize = () => {
+          setIsLargeScreen(window.innerWidth >= 1024);
+      };
+
+      // Listen for window resize events
+      window.addEventListener('resize', handleResize);
+
+      // Clean up event listener on unmount
+      return () => window.removeEventListener('resize', handleResize);
+  }, []);
   // console.log(gigCard._id)
   // console.log(gigCard);
   // eslint-disable-next-line no-unused-vars
@@ -33,7 +47,11 @@ const GigCard = ({ gigCard }) => {
 
   return (
 
-    <div className="max-w-lg rounded overflow-hidden shadow-lg bg-white " data-aos="fade-left" data-aos-delay="500">
+    <div
+    className="rounded overflow-hidden shadow-lg bg-white p-4"
+    data-aos={isLargeScreen ? 'fade-left' : undefined}
+    data-aos-delay={isLargeScreen ? '500' : undefined}
+>
       <Link to={`/gig-details/${gigCard?._id}`} className="relative group">
         <img
           className="w-full h-48 object-cover transition-transform duration-300 transform group-hover:scale-110"

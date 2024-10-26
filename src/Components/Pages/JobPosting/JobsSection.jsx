@@ -104,10 +104,10 @@ const JobsSection = () => {
     <div>
       {/* Header Section */}
       <div className="p-6 md:p-14 flex flex-col items-center border-b-4 border-green-500">
-        <h1 className="text-center text-3xl md:text-5xl font-semibold  border-y-2 p-3 text-green-500 font-serif">
+        <h1 className="text-center text-4xl md:text-5xl font-semibold  p-3 text-green-500 font-serif border-b-4 border-green-500">
           Jobs
         </h1>
-        <p className="text-center text-lg w-2/3 text-gray-600 mt-4">
+        <p className="text-center text-lg lg:w-2/3 text-gray-600 mt-4">
         Explore a diverse range of job openings or hire top-notch talent for your team. Discover positions that align with your skills and career aspirations, whether you’re looking to advance your professional journey or seeking exceptional candidates to strengthen your workforce. Join our dynamic community and take the next step toward success, connecting with opportunities that inspire and empower your future.
         </p>
       </div>
@@ -125,7 +125,7 @@ const JobsSection = () => {
           />
         </div>
         {/* Sort by Section */}
-        <div className="flex flex-col md:flex-row items-center container mx-auto justify-end gap-2 text-green-500 mt-4 md:mt-6">
+        <div className="flex flex-row md:flex-row items-center container mx-auto justify-center gap-2 text-green-500 mt-4 md:mt-6">
           <label className="text-lg font-medium text-gray-500">Sort by</label>
           <select
             value={sortBy}
@@ -235,7 +235,7 @@ const JobsSection = () => {
 
 
         {/* Jobs Section */}
-        <div className="col-span-1 lg:col-span-3 grid grid-cols-1 gap-2 md:gap-2 " >
+        <div className="col-span-1 lg:col-span-3 grid grid-cols-1 gap-2 md:gap-2 z-100 " >
           {jobs?.length >= 0 &&
             jobs?.map((job) => <JobsCard key={job._id} job={job} />)}
           {!jobs && <h1>Jobs Not FOund</h1>}

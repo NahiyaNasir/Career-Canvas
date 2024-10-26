@@ -224,8 +224,7 @@ const AdminSidebar = () => {
       </aside>
 
       {/* Main Content Area */}
-      {/* Main Content Area */}
-      <div className="w-full p-10 h-full flex flex-col">
+      <div className="w-full p-1 md:p-5 lg:p-10 h-full flex flex-col">
         <div className="flex justify-end">
           <button
             className="md:hidden p-2 text-green-600 hover:bg-green-200"
