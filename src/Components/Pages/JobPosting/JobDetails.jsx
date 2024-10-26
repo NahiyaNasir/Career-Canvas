@@ -73,7 +73,7 @@ const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
           <GoArrowRight />
         </button>
 
-        <div className="px-2 grid grid-cols-1 sm:grid-cols-3 gap-2 md:mt-5">
+        <div className="px-2 grid grid-cols-1 sm:grid-cols-3 gap-2 md:mt-5 lg:pt-28">
           <div className="col-span-1 sm:col-span-2 space-y-3">
             <h2 className="text-xl sm:text-2xl font-bold">{jobTitle}</h2>
             <div className="flex flex-col sm:flex-row justify-between">
