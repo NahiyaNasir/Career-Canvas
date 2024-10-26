@@ -54,14 +54,14 @@ const Navbar = () => {
             </NavLink>
             {
               !user && <>
-              <NavLink to="/signin" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
-             Signin
-            </NavLink>
-            <NavLink to="/signup" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
-             Signup
-            </NavLink></>
+                <NavLink to="/signin" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+                  Signin
+                </NavLink>
+                <NavLink to="/signup" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+                  Signup
+                </NavLink></>
             }
-           
+
             {/* User Menu */}
             {user && (
               <div className="relative">
@@ -95,10 +95,10 @@ const Navbar = () => {
                     </button>
                   </div>
                 )}
-                
+
               </div>
             )}
-            
+
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -180,21 +180,32 @@ const Navbar = () => {
               DD
             </NavLink>
             {
-              !user && <div className="flex flex-row gap-2">
-              <NavLink to="/signin" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
-             Signin
-            </NavLink>
-            <NavLink to="/signup" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
-             Signup
-            </NavLink></div>
+              !user && (
+                <div className="flex flex-col gap-2">
+                  <NavLink
+                    to="/signin"
+                    className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign in
+                  </NavLink>
+                  <NavLink
+                    to="/signup"
+                    className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign up
+                  </NavLink>
+                </div>
+              )
             }
 
-           
-            
+
+
           </div>
           <div className="bg-black  rounded-l-3xl">
-             {/* User Menu for Mobile */}
-             {user && (
+            {/* User Menu for Mobile */}
+            {user && (
               <>
                 <Link
                   to="/dashboard"
