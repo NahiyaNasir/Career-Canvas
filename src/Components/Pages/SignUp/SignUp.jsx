@@ -13,7 +13,7 @@ const SignUp = () => {
   const [signUpError, setSignUpError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-// for validation pass
+// for validation password
   const validatePassword = (password) => {
     if (password.length < 5) {
       toast.error('Password must be at least 5 characters long');
