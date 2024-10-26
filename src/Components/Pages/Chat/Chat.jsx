@@ -108,10 +108,10 @@ const Chat = () => {
                 )}
                 <button
                     onClick={sendMessage}
-                    className="mt-2 p-4 bg-gradient-to-r from-green-500 to-green-700 text-white font-bold rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
+                    className="mt-2 p-4 bg-gradient-to-r from-green-500 to-green-700 text-white font-bold rounded-lg shadow-lg transition-all z-10 duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
                 >
                     Send
-                </button>
+                </button> 
             </div>
         </div>
     );
