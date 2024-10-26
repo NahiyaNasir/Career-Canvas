@@ -4,7 +4,11 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Chat = () => {
     const { user, chatMessages, addChatMessage, clearChatMessages } = useContext(AuthContext);
-
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      };
     // Function to parse and format the text
     const parseText = (text) => {
         const lines = text.split('\n');
@@ -71,7 +75,7 @@ const Chat = () => {
             <h1 className="text-3xl font-bold text-green-800 text-center mb-4">AI Chatbot</h1>
             <div
                 ref={chatBoxRef}
-                className="min-h-[44rem] overflow-y-auto p-4 bg-gray-100 rounded-lg mb-4"
+                className="min-h-[30rem] overflow-y-auto p-4 bg-gray-100 rounded-lg mb-4"
             >
                 {chatMessages.map((msg, index) => (
                     <div
@@ -98,7 +102,7 @@ const Chat = () => {
                         placeholder="Type your message..."
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        className="flex-1 p-2 text-2xl border border-gray-300 rounded w-full"
+                        className="flex-1 p-2 text-xl border border-gray-300 rounded w-full"
                         onKeyDown={(e) => e.key === 'Enter' && e.shiftKey ? (setIsTextarea(true), e.preventDefault()) : null}
                     />
                 )}

@@ -104,7 +104,7 @@ const GigSelector = () => {
             </div>
 
             {/* Filter Form */}
-            <div className="bg-white p-8 rounded-lg shadow-lg transition duration-300 hover:shadow-xl">
+            <div className="bg-white p-8 rounded-lg shadow-lg transition duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-delay="500">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                     {/* Skills Selection */}
@@ -171,7 +171,7 @@ const GigSelector = () => {
 
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 mt-6 gap-4" data-aos="fade-up" data-aos-delay="500">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 mt-6 gap-4" >
                 {gigsCards.length === 0
                     ? Array.from({ length: 12 }, (_, index) => (
                         <div key={index} className="bg-gray-200 animate-pulse rounded-lg p-4">
@@ -182,18 +182,12 @@ const GigSelector = () => {
                         </div>
                     ))
                     : gigsCards.map(gigCard => (
-                        <GigCard key={gigCard._id} gigCard={gigCard} />
+                        <GigCard key={gigCard._id} gigCard={gigCard}></GigCard>
                     ))}
             </div>
-            {/* Display Gig Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1  mt-6 gap-4 " data-aos="fade-up" data-aos-delay="500">
-                {gigsCards.map(gigCard => (
-                    <GigCard key={gigCard._id} gigCard={gigCard}></GigCard>
-                ))}
-            </div>
-
+          
             {/* Pagination Controls */}
-            <div className="flex justify-between mt-6">
+            <div className="flex justify-center items-center gap-4 mt-6">
                 <button
                     onClick={handlePrevPage}
                     disabled={currentPage === 1}
@@ -201,7 +195,7 @@ const GigSelector = () => {
                 >
                     Previous
                 </button>
-                <span className='text-green-800 font-bold'>Page {currentPage} of {totalPages}</span>
+                <span className='text-green-800 font-bold  p-2'>Page {currentPage} of {totalPages}</span>
                 <button
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}

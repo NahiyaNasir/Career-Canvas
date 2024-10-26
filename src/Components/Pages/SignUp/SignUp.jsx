@@ -49,7 +49,7 @@ const SignUp = () => {
     setLoading(true);
     try {
        await createUser(email, pass);
-      await UpdateProfile(name, role);
+       await UpdateProfile(name, role);
       toast.success('User Created Successfully!!');
       navigate('/');
     } catch (error) {

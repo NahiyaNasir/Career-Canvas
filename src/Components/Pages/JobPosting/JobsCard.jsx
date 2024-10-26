@@ -1,5 +1,6 @@
 import { useState } from "react";
 import JobDetails from "./JobDetails";
+import { FaLocationArrow, FaUser } from "react-icons/fa";
 
 const JobsCard = ({ job }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,11 +36,13 @@ const JobsCard = ({ job }) => {
     <>
       <div
         onClick={toggleDetails}
-        className="border p-5 m-2 rounded-lg shadow-md hover:shadow-xl  hover:border-b-8 hover:border-green-600 transition-all duration-300 bg-white h-56"
+        className="border p-5 m-2 rounded-lg shadow-md hover:shadow-xl  hover:border-b-8 hover:border-green-600 transition-all duration-300 bg-white h-56" data-aos="fade-up" data-aos-delay="500"
       >
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
-          <h1 className="text-xl md:text-xl font-semibold text-gray-800 hover:text-green-600 transition duration-200 border-b-2 border-green-500">{jobTitle}</h1>
-          <p className="text-gray-500 text-sm md:text-base">{location}</p>
+          <h1 className="text-xl md:text-xl font-semibold text-gray-800 hover:text-green-600 transition duration-200  border-green-500 flex gap-2"> <FaUser className="text-green-600"></FaUser>{jobTitle}</h1>
+          <p className="text-gray-500 text-sm md:text-base flex justify-center items-center gap-2">
+            <FaLocationArrow></FaLocationArrow>
+            {location}</p>
         </div>
 
         <div className="text-gray-700 text-base mb-4 break-words whitespace-pre-wrap">
@@ -69,6 +72,7 @@ const JobsCard = ({ job }) => {
         </div>
       </div>
 
+      <div >
       {isOpen && selectedJob && (
         <JobDetails
           toggleDetails={toggleDetails}
@@ -77,6 +81,7 @@ const JobsCard = ({ job }) => {
           job={selectedJob}
         />
       )}
+      </div>
     </>
   );
 };
