@@ -63,7 +63,7 @@ const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
       )}
 
       <div
-        className={`fixed top-0 right-0 z-40 w-5/6 md:w-10/12 p-4 overflow-y-auto transition-transform shadow-xl ${isOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 z-40 w-5/6 md:w-10/12 p-4 pt-44 overflow-y-auto transition-transform shadow-xl ${isOpen ? "translate-x-0" : "translate-x-full"
           } transition-transform duration-300 ease-in-out bg-white shadow-lg h-full`}
       >
         <button
@@ -73,7 +73,7 @@ const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
           <GoArrowRight />
         </button>
 
-        <div className="px-2 grid grid-cols-1 sm:grid-cols-3 gap-2 md:mt-5">
+        <div className="px-2 grid grid-cols-1 sm:grid-cols-3 gap-2 md:mt-5 ">
           <div className="col-span-1 sm:col-span-2 space-y-3">
             <h2 className="text-xl sm:text-2xl font-bold">{jobTitle}</h2>
             <div className="flex flex-col sm:flex-row justify-between">

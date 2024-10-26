@@ -2,10 +2,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { FormContext } from '../../../Providers/FormContext';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const SubmitForm = () => {
   const { formData, submitFormData } = useContext(FormContext);
-
+  const navigate = useNavigate();
   // Local state to handle form input
   const [formValues, setFormValues] = useState(formData);
 
@@ -41,6 +42,7 @@ const SubmitForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     await submitFormData(); // Calls the function to submit the data
+    navigate('/dashboard/user-profile');
   };
 
   return (
