@@ -32,7 +32,7 @@ const JobsCard = ({ job }) => {
     <>
       <div
         onClick={toggleDetails}
-        className="border p-4 sm:p-5 m-2 rounded-lg shadow-md hover:shadow-xl hover:border-b-8 hover:border-green-600 transition-all duration-300 bg-white h-auto sm:h-60 cursor-pointer"
+        className="border p-4 sm:p-5 m-2 rounded-lg shadow-md hover:shadow-xl hover:border-b-8  hover:border-green-600 transition-all duration-300 bg-white h-auto sm:h-60 cursor-pointer"
         data-aos="fade-up"
         data-aos-delay="500"
       >
