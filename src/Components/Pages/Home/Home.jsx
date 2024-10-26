@@ -6,6 +6,9 @@ import WeDeliverBest from "./WeDeliverBest/WeDeliverBest";
 
 // import CustomerReview from "./CustomerReview/CustomerReview";
 import Resume_Templates from "../Resume_Templates/Resume_Templates";
+import Premium_Membership from "../Premium_Membership/Premium_Membership";
+import JobRecom from "../../../important/JobRecom";
+
 // import ResumeTemplatePreview from "./ResumeTemplatePreview/ResumeTemplatePreview";
 
 const Home = () => {
@@ -19,8 +22,10 @@ const Home = () => {
                     <WeDeliverBest></WeDeliverBest>
                     {/* <Testimonials></Testimonials>
                     <CustomerReview></CustomerReview> */}
-                
+                    <Premium_Membership/>
+                    <JobRecom />
             </div>
+           
         </div>
     );
 };

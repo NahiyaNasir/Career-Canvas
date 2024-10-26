@@ -183,15 +183,6 @@ const AdminSidebar = () => {
                   </li>
                   <li>
                     <Link
-                      to="user-profile"
-                      className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
-                    >
-                      <RiAdminFill />
-                      <span className="ml-3">Your Resume</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
                       to="loginUserProfile"
                       className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
                     >
@@ -237,7 +228,7 @@ const AdminSidebar = () => {
       <div className="w-full p-10 h-full flex flex-col">
         <div className="flex justify-end">
           <button
-            className="md:hidden p-2 text-gray-300 hover:bg-gray-700"
+            className="md:hidden p-2 text-green-600 hover:bg-green-200"
             onClick={toggleSidebar}
           >
             {isOpen ? "Close Sidebar" : "Open Sidebar"}
