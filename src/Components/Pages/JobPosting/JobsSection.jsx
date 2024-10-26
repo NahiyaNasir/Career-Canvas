@@ -118,7 +118,7 @@ const JobsSection = () => {
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-2 text-gray-700 border-green-500 rounded-xl placeholder-gray-500 bg-white outline-none focus:placeholder-transparent border-2"
+            className="px-4 py-2 text-gray-700 border-green-500 rounded-2xl placeholder-gray-500 text-lg bg-white outline-none focus:placeholder-transparent border-2"
             type="text"
             name="search"
             placeholder="Search for jobs"
@@ -126,11 +126,11 @@ const JobsSection = () => {
         </div>
         {/* Sort by Section */}
         <div className="flex flex-col md:flex-row items-center container mx-auto justify-end gap-2 text-green-500 mt-4 md:mt-6">
-          <label className="text-lg font-medium">Sort by</label>
+          <label className="text-lg font-medium text-gray-500">Sort by</label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border rounded px-3 py-2 mt-2 md:mt-0"
+            className="border rounded px-3 text-md py-2 mt-2 md:mt-0"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
@@ -141,7 +141,7 @@ const JobsSection = () => {
       {/* Main Content Section */}
       <div className="container mx-auto mt-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="col-span-1 bg-white shadow-lg text-green-600 p-6 rounded-lg h-auto transition-transform transform ">
-          <h2 className="text-2xl font-bold mb-6 text-center text-green-500">Filters</h2>
+          <h2 className="text-2xl font-serif mb-6 text-center text-green-500">Filters Jobs</h2>
 
           {/* Experience Level Dropdown */}
           <div className="border-b mb-6">
