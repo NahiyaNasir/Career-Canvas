@@ -5,8 +5,14 @@ import { TbReportMoney } from "react-icons/tb";
 import hiringImage from "../../../../public/HiringConfirmed.png";
 import { MdOutlineAddHomeWork, MdWorkHistory } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosPublic from "../../../Hooks/AxiosHooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
+  const { user } = useContext(AuthContext)
+  const axios = useAxiosPublic()
   if (!job) {
     return; // Early return if blog is undefined
   }
@@ -22,9 +28,29 @@ const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
     remoteOption,
     experience,
     date,
+    _id
   } = job;
 
   const formattedDate = new Date(date).toISOString().split('T')[0];
+
+
+
+  const SaveJob = async () => {
+    try {
+      const response = await axios.put(`/api/saveJobs/${_id}`, { email: user.email, id: user.uid });
+      if (response.status === 200) {
+        toast.success('Job saved successfully!');
+        console.log(response);
+      } else {
+        toast.error('Failed to save job');
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error('An error occurred');
+    }
+  };
+
+
 
   return (
     <>
@@ -37,9 +63,8 @@ const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
       )}
 
       <div
-        className={`fixed top-0 right-0 z-40 w-5/6 md:w-10/12 p-4 overflow-y-auto transition-transform shadow-xl ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out bg-white shadow-lg h-full`}
+        className={`fixed top-0 right-0 z-40 w-5/6 md:w-10/12 p-4 pt-44 overflow-y-auto transition-transform shadow-xl ${isOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 ease-in-out bg-white shadow-lg h-full`}
       >
         <button
           onClick={toggleDetails}
@@ -48,7 +73,7 @@ const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
           <GoArrowRight />
         </button>
 
-        <div className="px-2 grid grid-cols-1 sm:grid-cols-3 gap-2 md:mt-5">
+        <div className="px-2 grid grid-cols-1 sm:grid-cols-3 gap-2 md:mt-5 ">
           <div className="col-span-1 sm:col-span-2 space-y-3">
             <h2 className="text-xl sm:text-2xl font-bold">{jobTitle}</h2>
             <div className="flex flex-col sm:flex-row justify-between">
@@ -100,12 +125,13 @@ const JobDetails = ({ toggleDetails, closeDetails, isOpen, job }) => {
                 Learn more
               </a>
             </div>
+            <Link state={{ job }} to={'/applyJob'}>
+              <button className="bg-green-500 text-white font-semibold py-2 px-4 rounded w-full mb-2">
+                Apply Now
+              </button>
+            </Link>
 
-            <button className="bg-green-500 text-white font-semibold py-2 px-4 rounded w-full mb-2">
-              <Link state={{ job }} to={'/applyJob'}>Apply Now</Link>
-            </button>
-
-            <button className="border-2 border-green-500 text-green-500 font-semibold py-2 px-4 rounded w-full mb-4">
+            <button onClick={SaveJob} className="border-2 border-green-500 text-green-500 font-semibold py-2 px-4 rounded w-full mb-4">
               Save job
             </button>
 

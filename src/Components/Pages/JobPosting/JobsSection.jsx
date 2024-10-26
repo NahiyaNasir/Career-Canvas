@@ -15,6 +15,7 @@ const JobsSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  console.log(jobs)
 
   // Filter
   const [experience, setExperience] = useState([]);
@@ -37,12 +38,13 @@ const JobsSection = () => {
             limit: itemsPerPage,
             sortBy,
             searchQuery,
-            experience ,
+            experience,
             remoteOption: jobType,
             salaryRange,
             employmentType: employType,
           },
         });
+
         setJobs(response?.data?.jobs);
         console.log(response?.data?.jobs);
         setTotalPages(response.data.totalPages);
@@ -96,18 +98,17 @@ const JobsSection = () => {
       }
     });
   };
-  
+
 
   return (
     <div>
       {/* Header Section */}
       <div className="p-6 md:p-14 flex flex-col items-center border-b-4 border-green-500">
-        <h1 className="text-center text-3xl md:text-5xl font-semibold text-green-500">
-          Job Posting Page
+        <h1 className="text-center text-3xl md:text-5xl font-semibold  border-y-2 p-3 text-green-500 font-serif">
+          Jobs
         </h1>
         <p className="text-center text-lg w-2/3 text-gray-600 mt-4">
-          Find your next opportunity or hire top talent for your team. Discover
-          a range of jobs that suit your skills and career aspirations.
+        Explore a diverse range of job openings or hire top-notch talent for your team. Discover positions that align with your skills and career aspirations, whether you’re looking to advance your professional journey or seeking exceptional candidates to strengthen your workforce. Join our dynamic community and take the next step toward success, connecting with opportunities that inspire and empower your future.
         </p>
       </div>
 
@@ -117,7 +118,7 @@ const JobsSection = () => {
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-2 text-gray-700 border-green-500 rounded placeholder-gray-500 bg-white outline-none focus:placeholder-transparent border-2"
+            className="px-4 py-2 text-gray-700 border-green-500 rounded-2xl placeholder-gray-500 text-lg bg-white outline-none focus:placeholder-transparent border-2"
             type="text"
             name="search"
             placeholder="Search for jobs"
@@ -125,11 +126,11 @@ const JobsSection = () => {
         </div>
         {/* Sort by Section */}
         <div className="flex flex-col md:flex-row items-center container mx-auto justify-end gap-2 text-green-500 mt-4 md:mt-6">
-          <label className="text-lg font-medium">Sort by</label>
+          <label className="text-lg font-medium text-gray-500">Sort by</label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border rounded px-3 py-2 mt-2 md:mt-0"
+            className="border rounded px-3 text-md py-2 mt-2 md:mt-0"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
@@ -139,30 +140,29 @@ const JobsSection = () => {
 
       {/* Main Content Section */}
       <div className="container mx-auto mt-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="col-span-1 bg-gray-50 text-green-500 p-4 rounded-lg h-auto">
-          <h2 className="text-xl font-bold mb-4 text-center">Filters</h2>
+        <div className="col-span-1 bg-white shadow-lg text-green-600 p-6 rounded-lg h-auto transition-transform transform ">
+          <h2 className="text-2xl font-serif mb-6 text-center text-green-500">Filters Jobs</h2>
+
           {/* Experience Level Dropdown */}
-          <div className="border-b mb-4">
+          <div className="border-b mb-6">
             <div
-              className="flex justify-between items-center cursor-pointer py-2"
+              className="flex justify-between items-center cursor-pointer py-3 hover:bg-gray-100 transition duration-200"
               onClick={toggleExperience}
             >
-              <span className="text-lg font-medium">Experience level</span>
-              <span>
-                {experienceOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
-              </span>
+              <span className="text-lg font-medium text-gray-700">Experience Level</span>
+              <span>{experienceOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
             </div>
             {experienceOpen && (
               <div className="py-2">
                 {["0-1", "2-3", "3+"].map((range) => (
-                  <label key={range} className="flex items-center mt-2">
+                  <label key={range} className="flex items-center mt-3 text-gray-600">
                     <input
                       type="checkbox"
-                      className="mr-2"
+                      className="mr-2 rounded text-green-500 focus:ring-green-400"
                       checked={experience.includes(range)}
                       onChange={() => handleExperienceChange(range)}
                     />
-                    { range === "0-1" ? "Beginner" : range === "2-3" ? "Intermediate" : "Expert"}
+                    {range === "0-1" ? "Beginner" : range === "2-3" ? "Intermediate" : "Expert"}
                   </label>
                 ))}
               </div>
@@ -170,21 +170,21 @@ const JobsSection = () => {
           </div>
 
           {/* Job Type Dropdown */}
-          <div className="border-b mb-4">
+          <div className="border-b mb-6">
             <div
-              className="flex justify-between items-center cursor-pointer py-2"
+              className="flex justify-between items-center cursor-pointer py-3 hover:bg-gray-100 transition duration-200"
               onClick={toggleJobType}
             >
-              <span className="text-lg font-medium">Job type</span>
+              <span className="text-lg font-medium text-gray-700">Job Type</span>
               <span>{jobTypeOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
             </div>
             {jobTypeOpen && (
               <div className="py-2">
                 {["FullTime", "PartTime"].map((type) => (
-                  <label className="flex items-center mt-2" key={type}>
+                  <label className="flex items-center mt-3 text-gray-600" key={type}>
                     <input
                       type="checkbox"
-                      className="mr-2"
+                      className="mr-2 rounded text-green-500 focus:ring-green-400"
                       checked={employType.includes(type)}
                       onChange={() => handleEmploymentTypeChange(type)}
                     />
@@ -192,10 +192,10 @@ const JobsSection = () => {
                   </label>
                 ))}
                 {["OnSite", "Remote", "Hybrid"].map((type) => (
-                  <label className="flex items-center mt-2" key={type}>
+                  <label className="flex items-center mt-3 text-gray-600" key={type}>
                     <input
                       type="checkbox"
-                      className="mr-2"
+                      className="mr-2 rounded text-green-500 focus:ring-green-400"
                       checked={jobType.includes(type)}
                       onChange={() => handleJobTypeChange(type)}
                     />
@@ -209,38 +209,33 @@ const JobsSection = () => {
           {/* Salary Range Dropdown */}
           <div className="border-b mb-4">
             <div
-              className="flex justify-between items-center cursor-pointer py-2"
+              className="flex justify-between items-center cursor-pointer py-3 hover:bg-gray-100 transition duration-200"
               onClick={toggleSalaryRange}
             >
-              <span className="text-lg font-medium">Salary Range</span>
-              <span>
-                {salaryRangeOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
-              </span>
+              <span className="text-lg font-medium text-gray-700">Salary Range</span>
+              <span>{salaryRangeOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
             </div>
             {salaryRangeOpen && (
               <div className="py-2">
-                {["0-100", "100-500", "500-1000", "1000-5000", "5000+"].map(
-                  (range) => (
-                    <label className="flex items-center mt-2" key={range}>
-                      <input
-                        type="checkbox"
-                        className="mr-2"
-                        checked={salaryRange.includes(range)}
-                        onChange={() => handleSalaryRangeChange(range)}
-                      />
-                      {range === "5000+"
-                        ? "$5K+"
-                        : `$${range.split("-").join(" to ")}`}
-                    </label>
-                  )
-                )}
+                {["100-500", "500-1000", "1000-5000", "6000-10000","11000-30000","31000-5000","51000-70000","71000+"].map((range) => (
+                  <label className="flex items-center mt-3 text-gray-600" key={range}>
+                    <input
+                      type="checkbox"
+                      className="mr-2 rounded text-green-500 focus:ring-green-400"
+                      checked={salaryRange.includes(range)}
+                      onChange={() => handleSalaryRangeChange(range)}
+                    />
+                    {range === "5000+" ? "$5K+" : `$${range.split("-").join(" to ")}`}
+                  </label>
+                ))}
               </div>
             )}
           </div>
         </div>
 
+
         {/* Jobs Section */}
-        <div className="col-span-1 lg:col-span-3 grid grid-cols-1 gap-4 md:gap-2">
+        <div className="col-span-1 lg:col-span-3 grid grid-cols-1 gap-2 md:gap-2 " >
           {jobs?.length >= 0 &&
             jobs?.map((job) => <JobsCard key={job._id} job={job} />)}
           {!jobs && <h1>Jobs Not FOund</h1>}

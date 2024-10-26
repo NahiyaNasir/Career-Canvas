@@ -2,21 +2,21 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "Ajoy Das",
-      image: "/public/testimonials1.jpg",
+      image: '../../../../../public/testimonials1.jpg',
       feedback:
         "Using this resume builder was a game-changer for my job search. The templates are modern and professional, and the customization options are fantastic. I was able to create a standout resume in no time!",
       designation: "One of our Clients",
     },
     {
       name: "Jebin Khan",
-      image: "/public/testimonials2.jpg",
+      image:'../../../../../public/testimonials2.jpg',
       feedback:
         "I was amazed at how easy it was to craft a polished resume with this tool. The user-friendly interface and variety of templates helped me present my skills and experience effectively. Highly recommend for anyone!",
       designation: "One of our Clients",
     },
     {
       name: "Sunny Khan",
-      image: "/public/testimonials3.jpg",
+      image:'../../../../../public/testimonials3.jpg',
       feedback:
         "This resume builder exceeded my expectations. The professional templates and straightforward process made it simple to create a resume that truly reflects my qualifications.",
       designation: "One of our Clients",

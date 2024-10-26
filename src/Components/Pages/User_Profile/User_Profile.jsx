@@ -1,53 +1,36 @@
-import html2canvas from "html2canvas"; 
-import jsPDF from "jspdf"; 
-import Resume1 from "../Resume_Templates/templatesColllection/Resume1";
-import Resume2 from "../Resume_Templates/templatesColllection/Resume9";
-import { useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { saveAs } from 'file-saver'; // Import the file-saver library
 import { AuthContext } from "../../Providers/AuthProvider";
 import ResumeMe from "../Resume_Templates/templatesColllection/ResumeMe";
+import JobRecom from "../../../important/JobRecom";
 
 const User_Profile = () => {
   const { resumeId } = useContext(AuthContext);
-  const inputRef = useRef();
+  const inputRef = useRef(); // Reference to the section to be captured
 
-  const downloadPDF = () => {
-    const input = inputRef.current;
-    console.log("Input ref:", input); // Debugging output
-    if (!input) {
-      console.error("Input reference is null. Ensure the ref is correctly set.");
-      return; 
+  const handleDownloadDoc = () => {
+    const element = inputRef.current;
+    if (!element) {
+      console.error("Element not found");
+      return;
     }
+
+    // Create a new Blob object using the HTML content
+    const content = `
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <title>Resume</title>
+        </head>
+        <body>
+          ${element.innerHTML} <!-- Get the inner HTML of the resume -->
+        </body>
+      </html>
+    `;
+    const blob = new Blob([content], { type: "application/msword" });
     
-    const dpi = 300;
-
-    html2canvas(input, { scale: dpi / 96 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-      });
-
-      const imgWidth = 210; // Width of A4 paper
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      let position = 0;
-      let heightLeft = imgHeight;
-
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= 297;
-
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= 297;
-      }
-
-      pdf.save("template1-high-res-a4.pdf");
-    }).catch(err => {
-      console.error("Error capturing the canvas:", err); 
-    });
+    // Use file-saver to download the file
+    saveAs(blob, `resume-template-${resumeId}.doc`);
   };
 
   return (
@@ -59,24 +42,19 @@ const User_Profile = () => {
       </header>
 
       {/* Profile Content */}
-      <div className="p-6">
-        {/* <div ref={inputRef} className="bg-gray-100 p-4 rounded-lg">
-
-          {resumeId === 1 && <Resume1 />}
-          {resumeId === 2 && <Resume2 />}
-          {resumeId === 3 && <p>Hello</p>}
-          {resumeId === undefined && <h1>Loading.....</h1>}
-        </div> */}
-
-       <ResumeMe/>
+      <div className="p-6" ref={inputRef} id="resume"> {/* Attach ref and ID here */}
+        <ResumeMe /> {/* The resume component */}
+        
         {/* Download Button */}
         <button
-          onClick={downloadPDF}
+          onClick={handleDownloadDoc} // Call handleDownloadDoc on button click
           className="mt-4 bg-green-500 text-white py-2 px-6 rounded shadow hover:bg-green-600 transition duration-300"
         >
-          Download as PDF
+          Download as DOC
         </button>
       </div>
+
+      <JobRecom /> {/* Job recommendations section */}
     </div>
   );
 };

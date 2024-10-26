@@ -5,12 +5,11 @@ import signup_Animation from "../../../../public/lotti-animation/signup-animatio
 import 'animate.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const { createUser, signInWithGoogle, UpdateProfile } = useContext(AuthContext);
-  const [signUpError, setSignUpError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 // for validation password
@@ -27,6 +26,7 @@ const SignUp = () => {
       toast.error('Password must have at least one lowercase letter');
       return false;
     }
+    // eslint-disable-next-line no-useless-escape
     if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password)) {
       toast.error('Password must have at least one special character');
       return false;
@@ -39,15 +39,18 @@ const SignUp = () => {
 
     const email = e.target.email.value;
     const pass = e.target.pass.value;
+    const Cpass = e.target.Cpass.value;
     const name = e.target.name.value;
     const role = 'admin'
-
+    if(pass !==Cpass) {
+      return toast.error("Give same password");
+    }
     if (!validatePassword(pass)) return;
 
     setLoading(true);
     try {
-      const result = await createUser(email, pass);
-      await UpdateProfile(name, role);
+       await createUser(email, pass);
+       await UpdateProfile(name, role);
       toast.success('User Created Successfully!!');
       navigate('/');
     } catch (error) {
@@ -59,11 +62,11 @@ const SignUp = () => {
 
   const handleGoogle = async () => {
     setLoading(true);
-    try {
-      const result = await signInWithGoogle();
+    try {await signInWithGoogle();
       toast.success('User Created Successfully!!');
       navigate('/');
     } catch (error) {
+      toast.error(' User Create Unsuccessful!!')
       console.error(error);
     } finally {
       setLoading(false);
@@ -112,6 +115,17 @@ const SignUp = () => {
                 type="password"
                 id="password"
                 name="pass"
+                required
+                placeholder="Enter your Password"
+                className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500"
+              />
+            </div>
+            <div className="mb-4 animate__animated animate__lightSpeedInRight">
+              <label className="block text-sm font-bold mb-2" htmlFor="password">Coform password</label>
+              <input
+                type="password"
+                id="Cpassword"
+                name="Cpass"
                 required
                 placeholder="Enter your Password"
                 className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500"

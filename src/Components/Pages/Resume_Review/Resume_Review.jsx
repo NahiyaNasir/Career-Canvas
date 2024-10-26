@@ -1,18 +1,40 @@
-import  { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FaUpload, FaCheckCircle, FaPen } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../Providers/AuthProvider';
+import useAxiosPublic from '../../../Hooks/AxiosHooks/useAxiosPublic';
 
 const Resume_Review = () => {
+  const { user } = useContext(AuthContext)
+  const axios = useAxiosPublic()
   const [file, setFile] = useState(null); // State to hold the uploaded file
   const [uploadStatus, setUploadStatus] = useState(''); // State to hold upload status message
-  const [isUploading, setIsUploading] = useState(false); // Add an uploading state
+  const [feedback, setFeedback] = useState(''); // State to hold upload status message
+  const [isUploading, setIsUploading] = useState(false); // Add an uploading stat
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const response = await axios.get(`/api/feedback/${user?.email}`);
+        const uploadStatus = response.data.data;
+        setFeedback(uploadStatus);
+      } catch (error) {
+        console.error('Error fetching feedback:', error);
+      }
+    };
+
+    if (user?.email) {
+      fetchFeedback();
+    }
+  }, [user?.email, axios]);
+
+
+
 
   // Handler function for file input change
   const handleFileChange = (event) => {
     const uploadedFile = event.target.files[0]; // Get the first uploaded file
     if (uploadedFile) {
       setFile(uploadedFile); // Update the file state
-      console.log(uploadedFile); // Log the uploaded file details to the console
       setUploadStatus(''); // Clear any previous upload status
     }
   };
@@ -41,7 +63,7 @@ const Resume_Review = () => {
         body: formData,
       });
       if (response.status === 201) {
-        
+
         setUploadStatus('Resume uploaded successfully!');
         toast.success('Upload successful')
         setFile(null);
@@ -119,7 +141,48 @@ const Resume_Review = () => {
         </p>
         <div className="border border-green-300 rounded-lg p-4 mb-4 bg-green-100">
           <FaPen className="inline-block text-green-600 mr-2" />
-          <span className="text-green-700 font-semibold">No feedback yet.</span>
+          <span className="text-green-700 font-semibold">feedback yet.</span>
+
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>PDF Name</th>
+                  <th>Rating</th>
+                  <th>Feedback</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+
+                  feedback.length > 0 && feedback.map(
+                    (item, index) => (
+                      <tr key={index} className='hover'>
+                        <td>{index + 1}</td>
+                        <td className='max-w-36'>
+                          {item?.pdf.split(/[/\\]/).pop().replace(/.*-/, '')}
+                        </td>
+                        {
+                          item?.feedback?.rating && item?.feedback?.text ? <>
+                            <td className='max-w-3'>{item?.feedback?.rating}</td>
+                            <td className='max-w-28'>{item?.feedback?.text}</td>
+                          </> :
+
+                            <>
+                              <td className='max-w-3'>Panding Rating</td>
+                              <td className='max-w-28'>Panding Feedback</td>
+                            </>
+                        }
+                      </tr>
+                    )
+                  )
+                }
+
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import image1 from "../../../../../public/thumbsAboutUs.png"
+import image2 from "../../../../../public/exoertIconAboutUs.png"
+import image3 from "../../../../../public/approvedAboutUs.png"
 
 const ChooseOurPlatform = () => {
   return (
@@ -11,7 +14,8 @@ const ChooseOurPlatform = () => {
               <div className="bg-white p-6 rounded-lg shadow-md flex items-center gap-4">
                 <div className="bg-blue-100 p-4 rounded-full">
                   <img
-                    src="/public/thumbsAboutUs.png"
+                    // src="/public/thumbsAboutUs.png"
+                    src={image1}
                     alt="Thumbs Up"
                     className="w-16"
                   />
@@ -30,7 +34,8 @@ const ChooseOurPlatform = () => {
               <div className="bg-white p-6 rounded-lg shadow-md flex items-center gap-4">
                 <div className="bg-orange-100 p-4 rounded-full">
                   <img
-                    src="/public/exoertIconAboutUs.png"
+                    // src="/public/exoertIconAboutUs.png"
+                    src={image2}
                     alt="Expert Tips"
                     className="w-16"
                   />
@@ -49,7 +54,8 @@ const ChooseOurPlatform = () => {
               <div className="bg-white p-6 rounded-lg shadow-md flex items-center gap-4">
                 <div className="bg-green-100 p-4 rounded-full">
                   <img
-                    src="/public/approvedAboutUs.png"
+                    src={image3}
+                    // src="/public/approvedAboutUs.png"
                     alt="Recruiter Approved"
                     className="w-20"
                   />

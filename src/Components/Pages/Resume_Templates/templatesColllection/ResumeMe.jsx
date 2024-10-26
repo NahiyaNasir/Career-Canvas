@@ -1,5 +1,6 @@
 import React from 'react';
 import useUserTemplateData from '../../../../Hooks/useUserTemplateData';
+import { Page, Text, View, Document, PDFDownloadLink, StyleSheet } from '@react-pdf/renderer';
 import Resume12 from './Resume12';
 import Resume11 from './Resume11';
 import Resume10 from './Resume10';
@@ -13,44 +14,79 @@ import Resume3 from './Resume3';
 import Resume2 from './Resume2';
 import Resume1 from './Resume1';
 
+// Define styles for PDF
+const styles = StyleSheet.create({
+  page: {
+    padding: 20,
+    fontFamily: 'Helvetica',
+  },
+  section: {
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 5,
+    color: '#000',
+  },
+  text: {
+    fontSize: 12,
+    marginBottom: 5,
+    color: '#000',
+  },
+});
+
+// PDF Document Component
+const ResumePDF = ({ data }) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Text style={styles.title}>{data.name}</Text>
+        <Text style={styles.text}>{data.email}</Text>
+        <Text style={styles.text}>{data.phone}</Text>
+        <Text style={styles.text}>{data.experience}</Text>
+        {/* Add more fields as necessary */}
+      </View>
+    </Page>
+  </Document>
+);
+
 const ResumeMe = () => {
   const data = useUserTemplateData();
   const lastData = data?.data?.[data?.data.length - 1]; // Get the last element safely
   const templateId = lastData?.templateId; // Extract templateId
-  // const templateId = 11 
 
-  if (!templateId) {
-    return <p>No data available...</p>; // Handle case where there's no data
+  if (!templateId || !lastData) {
+    return (
+      <p className='text-3xl text-center font-medium mt-4 mb-4 text-green-600'>
+        No data available...
+      </p>
+    );
   }
-  if (!lastData) {
-    return <p>No data available...</p>; // Handle case where there's no data
-  }
-  
-  if (templateId == 1 ) {
-    return <Resume1 props={lastData} />;
-  } else if (templateId == 2) {
-    return <Resume2 props={lastData} />;
-  } else if (templateId == 3) {
-    return <Resume3 props={lastData} />;
-  } else if (templateId == 4) {
-    return <Resume4 props={lastData} />;
-  } else if (templateId == 5) {
-    return <Resume5 props={lastData} />;
-  } else if (templateId == 6) {
-    return <Resume6 props={lastData} />;
-  } else if (templateId == 7) {
-    return <Resume7 props={lastData} />;
-  } else if (templateId == 8) {
-    return <Resume8 props={lastData} />;
-  } else if (templateId == 9) {
-    return <Resume9 props={lastData} />;
-  } else if (templateId == 10) {
-    return <Resume10 props={lastData} />;
-  } else if (templateId == 11) {
-    return <Resume11 props={lastData} />;
-  } else if (templateId == 12) {
-    return <Resume12 props={lastData} />;
-  } 
+
+  return (
+    <div>
+      <div id="resume">
+        {templateId == 1 && <Resume1 props={lastData} />}
+        {templateId == 2 && <Resume2 props={lastData} />}
+        {templateId == 3 && <Resume3 props={lastData} />}
+        {templateId == 4 && <Resume4 props={lastData} />}
+        {templateId == 5 && <Resume5 props={lastData} />}
+        {templateId == 6 && <Resume6 props={lastData} />}
+        {templateId == 7 && <Resume7 props={lastData} />}
+        {templateId == 8 && <Resume8 props={lastData} />}
+        {templateId == 9 && <Resume9 props={lastData} />}
+        {templateId == 10 && <Resume10 props={lastData} />}
+        {templateId == 11 && <Resume11 props={lastData} />}
+        {templateId == 12 && <Resume12 props={lastData} />}
+      </div>
+      {/* <PDFDownloadLink
+        document={<ResumePDF data={lastData} />} // Pass the lastData as props to your PDF component
+        fileName={`resume-template-${templateId}.pdf`}
+      >
+        {({ loading }) => (loading ? 'Loading document...' : 'Download PDF')}
+      </PDFDownloadLink> */}
+    </div>
+  );
 };
 
 export default ResumeMe;

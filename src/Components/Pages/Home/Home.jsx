@@ -1,11 +1,14 @@
 
 import Banner from "./Banner/Banner";
 import ChooseOurPlatform from "./ChooseOurPlatform/ChooseOurPlatform";
-import Testimonials from "./Testimonials/Testimonials";
+// import Testimonials from "./Testimonials/Testimonials";
 import WeDeliverBest from "./WeDeliverBest/WeDeliverBest";
 
-import CustomerReview from "./CustomerReview/CustomerReview";
+// import CustomerReview from "./CustomerReview/CustomerReview";
 import Resume_Templates from "../Resume_Templates/Resume_Templates";
+import Premium_Membership from "../Premium_Membership/Premium_Membership";
+import JobRecom from "../../../important/JobRecom";
+
 // import ResumeTemplatePreview from "./ResumeTemplatePreview/ResumeTemplatePreview";
 
 const Home = () => {
@@ -17,10 +20,12 @@ const Home = () => {
             
                     <ChooseOurPlatform></ChooseOurPlatform>
                     <WeDeliverBest></WeDeliverBest>
-                    <Testimonials></Testimonials>
-                    <CustomerReview></CustomerReview>
-                
+                    {/* <Testimonials></Testimonials>
+                    <CustomerReview></CustomerReview> */}
+                    <Premium_Membership/>
+                    <JobRecom />
             </div>
+           
         </div>
     );
 };

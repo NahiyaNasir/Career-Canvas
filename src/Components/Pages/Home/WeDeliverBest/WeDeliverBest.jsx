@@ -1,3 +1,5 @@
+import image from "../../../../../public/weDevilerBest.png"
+
 const WeDeliverBest = () => {
   return (
     <section className="md:mt-20 mt-8 bg-white  md:px-16 md:py-14">
@@ -182,7 +184,8 @@ const WeDeliverBest = () => {
           {/* Right side image */}
           <div className="flex justify-center">
             <img
-              src="/public/weDevilerBest.png"
+              // src="/public/weDevilerBest.png"
+              src={image}
               alt="CV Examples"
               className="w-full md:w-3/4"
             />

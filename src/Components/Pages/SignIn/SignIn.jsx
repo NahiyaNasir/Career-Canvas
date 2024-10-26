@@ -5,7 +5,7 @@ import signinAnimation from "../../../../public/lotti-animation/signin-animation
 import 'animate.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -13,41 +13,45 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SingIn = () => {
 
-const {signIn,signInWithGoogle}=useContext(AuthContext)
-const navigate=useNavigate()
+  const { signIn, signInWithGoogle } = useContext(AuthContext)
+  const navigate = useNavigate()
 
 
   const handleLogin = e => {
     e.preventDefault();
-  
+
     const email = e.target.email.value;
     const pass = e.target.pass.value;
     console.log(email, pass);
 
-    signIn(email,pass)
-    .then((result)=>{
-      console.log(result.user)
-      toast.success('Login Successful!!')
-      navigate('/')
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+    signIn(email, pass)
+      .then((result) => {
+        console.log(result.user)
+        toast.success('Login Successful!!')
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error)
+        toast.error(' Login Unsuccessful!!')
+      })
 
   }
 
   // google Login
 
-  const handleGoogle=()=>{
+  const handleGoogle = () => {
     signInWithGoogle()
-    .then(result=>{
-      console.log(result)
-      toast.success('Login Successful!!')
-      navigate('/')
-    
-    })
-    .catch(error=>console.log(error))
-    }
+      .then(result => {
+        console.log(result)
+        toast.success('Login Successful!!')
+        navigate('/')
+
+      })
+      .catch(() => {
+        toast.error(' Login Unsuccessful!!')
+      }
+      )
+  }
 
 
 

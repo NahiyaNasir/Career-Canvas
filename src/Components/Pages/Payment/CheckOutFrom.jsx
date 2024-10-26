@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const CheckOutFrom = ({ amount }) => {
   const stripe = useStripe();

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../../Hooks/AxiosHooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { GiRunningNinja } from "react-icons/gi";
 
 const ManageUser = () => {
     const axios = useAxiosPublic();
@@ -35,7 +36,9 @@ const ManageUser = () => {
         fetchUsers();
     }, [axios]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className="flex w-full items-center justify-center pt-20">
+        <GiRunningNinja className="text-[2.8rem] animate-bounce h-16  w-16 md:h-36  md:w-36 text-green-500" />
+    </div>;
     if (error) return <div>{error}</div>;
 
     const handleDelete = async (uid) => {

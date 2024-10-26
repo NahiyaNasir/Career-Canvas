@@ -24,7 +24,7 @@ export const FormProvider = ({ children }) => {
     languages: [],
   });
 
-  console.log(formData);
+  // console.log(formData);
 
   const updatePersonalInfo = (data) => {
     setFormData((prev) => ({ ...prev, personalInfo: data }));
@@ -62,7 +62,6 @@ export const FormProvider = ({ children }) => {
   console.log(formDataWithUserId);
     try {
       const response = await axiosInstance.post('/api/formdata', formDataWithUserId);
-      console.log('Form data submitted successfully:', response.data);
   
       // Show SweetAlert modal upon success
       Swal.fire({

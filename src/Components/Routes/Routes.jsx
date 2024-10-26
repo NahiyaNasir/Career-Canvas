@@ -32,7 +32,11 @@ import SubmitForm from "../Pages/Resume_Templates/PageWise/SubmitForm";
 import ApplyJob from "../Pages/ApplyJob/ApplyJob";
 import AppliedJob from "../Pages/Dashboard/AppliedJob/AppliedJob";
 import LoginUserProfile from "../Pages/Dashboard/LoginUserProfile/LoginUserProfile";
-import DashboardC from "../../Chat-app/Dashbord/Dashbord";
+import CreateGig from "../Pages/Gigs/gigrfom";
+
+import GigSelector from "../Pages/Gigs/GigSelector";
+import AnimatedHoverCard from "../Pages/Dashboard/AnimatedHoverCard/AnimatedHoverCard";
+import GigDetails from "../Pages/Gigs/gigDetails";
 
 
 const router = createBrowserRouter([
@@ -88,6 +92,11 @@ const router = createBrowserRouter([
         element: <JobsSection></JobsSection>
       },
       {
+        path: '/gig-section',
+        element: <GigSelector></GigSelector>
+      },
+
+      {
         path: '/signin',
         element: <SignIn></SignIn>
       },
@@ -111,7 +120,13 @@ const router = createBrowserRouter([
         path: "/applyJob",
         element: <PrivateRouter><ApplyJob></ApplyJob></PrivateRouter>
       },
-      { path: '/chat', element:<DashboardC /> },
+      {
+        path:"/gig-details/:id",
+        element:<GigDetails></GigDetails>
+      }
+
+     
+
     ]
   },
   {
@@ -130,6 +145,11 @@ const router = createBrowserRouter([
         path: 'loginUserProfile',
         element: <LoginUserProfile></LoginUserProfile>
       },
+      
+      {
+        path: "CreateGig",
+        element:<CreateGig></CreateGig>
+      },
       {
         path: 'job-posting',
         element: <JobPosting></JobPosting>
@@ -142,6 +162,10 @@ const router = createBrowserRouter([
       {
         path: 'admin',
         element: <AddAdmin></AddAdmin>
+      },
+      {
+        path: 'myJobs',
+        element:<AnimatedHoverCard></AnimatedHoverCard>
       },
       {
         path: 'premium-membership',

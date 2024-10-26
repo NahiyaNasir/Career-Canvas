@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [resumeId, setResumeId] = useState('');
   const [error, setError] = useState(null);
+  const [chatMessages, setChatMessages] = useState([]); // Add this state
 
   const createUser = async (email, password) => {
     setLoading(true);
@@ -35,6 +36,15 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+ // Function to add a message
+ const addChatMessage = (message) => {
+  setChatMessages((prevMessages) => [...prevMessages, message]);
+};
+
+// Function to clear messages
+const clearChatMessages = () => {
+  setChatMessages([]);
+};
 
   const signIn = async (email, password) => {
     setLoading(true);
@@ -73,7 +83,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
-  console.log(user);
+  // console.log(user);
   
   const UpdateProfile = (fullName , role) => {
     return updateProfile(auth.currentUser, {
@@ -100,6 +110,9 @@ const AuthProvider = ({ children }) => {
     UpdateProfile,
     resumeId,
     error, // Add error to context value
+    clearChatMessages ,
+    addChatMessage ,
+    chatMessages
   };
 
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;

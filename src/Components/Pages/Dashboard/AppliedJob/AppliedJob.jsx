@@ -1,31 +1,48 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../../Hooks/AxiosHooks/useAxiosPublic";
+
 const AppliedJob = () => {
-    const axios = useAxiosPublic()
+    const axios = useAxiosPublic();
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      axios.get('/api/job/appliedJob')
-        .then(response => {
-          setData(response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
+        axios.get('/api/appliedJob')
+            .then(response => {
+                setData(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     }, [axios]);
 
-    console.log(data)
+    console.log(data);
 
-    const handleApprove = () =>{
-        toast.success("Application Approved Successfully");
-        // Update the data state here
-    }
-    const handleReject = () =>{
-        toast.success("Application Reject Successfully");
-        // Update the data state here
-    }
+    const handleApprove = async (applicantId) => {
+        try {
+            await axios.put(`/api/applicationPut/${applicantId}`, { status: 'approve' });
+            setData(prevData => prevData.map(item => 
+                item._id === applicantId ? { ...item, status: 'approve' } : item
+            ));
+            toast.success("Application Approved Successfully");
+        } catch (error) {
+            toast.error("Error Approving Application");
+            console.error('Error updating data:', error);
+        }
+    };
 
+    const handleReject = async (applicantId) => {
+        try {
+            await axios.put(`/api/applicationPut/${applicantId}`, { status: 'reject' });
+            setData(prevData => prevData.map(item => 
+                item._id === applicantId ? { ...item, status: 'reject' } : item
+            ));
+            toast.success("Application Rejected Successfully");
+        } catch (error) {
+            toast.error("Error Rejecting Application");
+            console.error('Error updating data:', error);
+        }
+    };
 
     return (
         <div className="bg-white lg:w-auto p-6 rounded-lg shadow-md">
@@ -38,32 +55,32 @@ const AppliedJob = () => {
                             <tr className="text-gray-600">
                                 <th className="py-2 pr-10 lg:pr-0 text-left">#</th>
                                 <th className="py-2 pr-10 lg:pr-0 text-left">Applicant Name</th>
-                                <th className="py-2 pr-10 lg:pr-0 text-left">JOb Title</th>
+                                <th className="py-2 pr-10 lg:pr-0 text-left">Job Title</th>
                                 <th className="py-2 pr-10 lg:pr-0 text-left">Message</th>
-                                <th className="py-2 pr-10 lg:pr-0 text-left">applicationDate</th>
+                                <th className="py-2 pr-10 lg:pr-0 text-left">Application Date</th>
                                 <th className="py-2 pr-10 lg:pr-0 text-left">Action</th>
-                            </tr> 
+                            </tr>
                         </thead>
                         <tbody>
-                            {data?.map((data, index) => (
-                                <tr key={data._id} className="border-t text-gray-800">
+                            {data?.map((applicant, index) => (
+                                <tr key={applicant._id} className="border-t text-gray-800">
                                     <td className="py-2 pr-10 lg:pr-0">{index + 1}</td>
-                                    <td className="py-2 pr-10 lg:pr-0">{data.name}</td>
-                                    <td className="py-2 pr-10 lg:pr-0">{data.jobTitle}</td>
-                                    <td className="py-2 pr-10 lg:pr-0">{data.details}</td>
-                                    <td className="py-2 pr-10 lg:pr-0">{data.applicationDate}</td>
+                                    <td className="py-2 pr-10 lg:pr-0">{applicant.name}</td>
+                                    <td className="py-2 pr-10 lg:pr-0">{applicant.jobTitle}</td>
+                                    <td className="py-2 pr-10 lg:pr-0">{applicant.details}</td>
+                                    <td className="py-2 pr-10 lg:pr-0">{applicant.applicationDate}</td>
                                     <td className="space-x-1">
                                         <button
-                                            onClick={() => handleApprove(data)}
-                                            disabled={data.status === 'active'}
-                                            className={`p-2 rounded-lg ${data.status === 'approve' ? 'bg-green-500' : 'bg-red-500'} ${data.status === 'approve' ? 'cursor-not-allowed' : ''}`}>
-                                            {data.status === 'approve' ? 'Approved' : 'Approve'}
+                                            onClick={() => handleApprove(applicant._id)}
+                                            disabled={applicant.status === 'approve'}
+                                            className={`p-2 rounded-lg ${applicant.status === 'approve' ? 'bg-green-500' : 'bg-blue-500'} ${applicant.status === 'approve' ? 'cursor-not-allowed' : ''}`}>
+                                            {applicant.status === 'approve' ? 'Approved' : 'Approve'}
                                         </button>
                                         <button
-                                            onClick={() => handleReject(data)}
-                                            disabled={data.status === 'active'}
-                                            className={`p-2 rounded-lg ${data.status === 'reject' ? 'bg-red-500' : 'bg-purple-500'} ${data.status === 'approve' ? 'cursor-not-allowed' : ''}`}>
-                                            {data.status === 'reject' ? 'Reject' : 'Approve'}
+                                            onClick={() => handleReject(applicant._id)}
+                                            disabled={applicant.status === 'approve'}
+                                            className={`p-2 rounded-lg ${applicant.status === 'reject' ? 'bg-red-500' : 'bg-purple-500'} ${applicant.status === 'approve' ? 'cursor-not-allowed' : ''}`}>
+                                            {applicant.status === 'reject' ? 'Rejected' : 'Reject'}
                                         </button>
                                     </td>
                                 </tr>
@@ -72,7 +89,6 @@ const AppliedJob = () => {
                     </table>
                 </div>
             </div>
-
         </div>
     );
 };
