@@ -180,13 +180,13 @@ const Navbar = () => {
               DD
             </NavLink>
             {
-              !user && <>
+              !user && <div className="flex flex-row gap-2">
               <NavLink to="/signin" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
              Signin
             </NavLink>
             <NavLink to="/signup" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
              Signup
-            </NavLink></>
+            </NavLink></div>
             }
 
            
