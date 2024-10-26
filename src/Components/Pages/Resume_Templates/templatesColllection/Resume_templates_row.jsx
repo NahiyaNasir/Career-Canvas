@@ -6,7 +6,6 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import { Outlet, useNavigate } from "react-router-dom";
-// import { AuthContext } from "../../../Providers/AuthProvider";
 import { useContext } from "react";
 import { FormContext } from "../../../Providers/FormContext";
 
@@ -27,43 +26,41 @@ const images = [
 
 const Resume_templates_row = () => {
     const navigate = useNavigate();
-    // const { user, resumeId, } = useContext(AuthContext);
-    const { setTemplateId,  } = useContext(FormContext);
+    const { setTemplateId } = useContext(FormContext);
+
     const handleImageClick = (resumeType) => {
-        console.log('Selected Resume:', resumeType);
-        // Logs the selected resume
-        let templateId= String(resumeType)
-        setTemplateId(templateId)
+        let templateId = String(resumeType);
+        setTemplateId(templateId);
         navigate('/resume-templates/personal-info-form', { state: { resumeType } });
     };
 
-
     return (
-        <div className="shadow-md border-b-4 border-b-green-500 border-r-2 border-r-green-500 p-10 bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900">
-            <h1 className="text-4xl font-extrabold bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent text-center mb-6">
+        <div className="p-6 md:p-10 shadow-md border-b-4 border-b-green-500 border-r-2 border-r-green-500 bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900">
+            <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent text-center mb-6">
                 Get Your Dream Job with Our Resume Builder
             </h1>
-            <div className="flex items-center gap-2 mb-4 justify-center">
+            <div className="flex flex-col items-center gap-2 mb-4 justify-center">
                 <FaRegStar className="text-green-500 text-2xl" />
-                <h2 className="text-3xl font-extrabold bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
+                <h2 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
                     Popular Templates
                 </h2>
             </div>
 
             <Swiper
-                slidesPerView={4}
-                spaceBetween={30}
+                slidesPerView={1}
+                spaceBetween={20}
                 autoplay={{
-                    delay: 3000,  // Auto scroll after 3 seconds
-                    disableOnInteraction: false,  // Keep autoplay even after user interacts
+                    delay: 3000,
+                    disableOnInteraction: false,
                 }}
                 pagination={{ clickable: true }}
                 modules={[Autoplay, Pagination]}
                 className="mySwiper"
                 breakpoints={{
-                    640: { slidesPerView: 1 }, // For smaller screens
-                    768: { slidesPerView: 2 }, // For medium screens
-                    1024: { slidesPerView: 3 }, // For large screens
+                    640: { slidesPerView: 1 },
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                    1280: { slidesPerView: 4 },
                 }}
             >
                 {images.map((image) => (
@@ -71,22 +68,22 @@ const Resume_templates_row = () => {
                         <div className="flex flex-col items-center justify-center p-4 shadow-lg rounded-lg bg-white dark:bg-gray-800 transform hover:scale-105 transition-transform duration-300 ease-in-out">
                             <img
                                 src={image.url}
-                                className="w-full h-auto mb-2 rounded-lg"
+                                className="w-full mb-2 rounded-lg object-cover"
                                 alt={image.name}
+                                style={{ height: '350px', width: '280px' }}  // Increased width and height
                             />
                             <a
                                 href="#_"
                                 className="relative inline-block text-lg group mt-4"
                                 onClick={(e) => { e.preventDefault(); handleImageClick(image.id); }}
                             >
-                                <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 dark:text-gray-300 transition-colors duration-300 ease-out border-2 border-green-500 rounded-lg group-hover:text-white">
-                                    <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50 dark:bg-gray-700"></span>
+                                <span className="relative z-10 block px-4 py-2 md:px-5 md:py-3 overflow-hidden font-medium leading-tight text-gray-800 dark:text-gray-300 transition-colors duration-300 ease-out border-2 border-green-500 rounded-lg group-hover:text-white">
+                                    <span className="absolute inset-0 w-full h-full px-4 py-2 md:px-5 md:py-3 rounded-lg bg-gray-50 dark:bg-gray-700"></span>
                                     <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-green-500 group-hover:-rotate-180 ease"></span>
                                     <span className="relative">Use</span>
                                 </span>
-                                <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-green-500 rounded-lg group-hover:mb-0 group-hover:mr-0"></span>
+                                <span className="absolute bottom-0 right-0 w-full h-10 md:h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-green-500 rounded-lg group-hover:mb-0 group-hover:mr-0"></span>
                             </a>
-
                         </div>
                     </SwiperSlide>
                 ))}
@@ -98,5 +95,3 @@ const Resume_templates_row = () => {
 };
 
 export default Resume_templates_row;
-
-

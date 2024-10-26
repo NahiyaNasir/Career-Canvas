@@ -12,7 +12,7 @@ const SignUp = () => {
   const { createUser, signInWithGoogle, UpdateProfile } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+// for validation password
   const validatePassword = (password) => {
     if (password.length < 5) {
       toast.error('Password must be at least 5 characters long');
@@ -26,6 +26,7 @@ const SignUp = () => {
       toast.error('Password must have at least one lowercase letter');
       return false;
     }
+    // eslint-disable-next-line no-useless-escape
     if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password)) {
       toast.error('Password must have at least one special character');
       return false;

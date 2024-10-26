@@ -1,4 +1,5 @@
-import React, { memo, useState } from 'react';
+/* eslint-disable react/display-name */
+import { memo, useState } from 'react';
 
 
 const ProjectItem = memo(({ project, onOpen, onEdit, onDelete }) => {

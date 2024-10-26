@@ -4,6 +4,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Chat = () => {
     const { user, chatMessages, addChatMessage, clearChatMessages } = useContext(AuthContext);
+    // eslint-disable-next-line no-unused-vars
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
           sendMessage();
