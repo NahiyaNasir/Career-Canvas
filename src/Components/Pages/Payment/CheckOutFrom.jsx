@@ -64,6 +64,8 @@ const CheckOutFrom = ({ amount }) => {
         paymentIntentId: paymentIntent.id,
         amount,
         status: "SUCCEEDED",
+        userId: user?.uid,
+        displayName: user?.displayName,
       });
       // console.log(res);
       if (res.data?.paymentIntentId) {
@@ -74,7 +76,7 @@ const CheckOutFrom = ({ amount }) => {
   return (
     <div >
       <form  onSubmit={handleSubmit} className="py-5">
-        <div className="text-center  px-2 mt-3 text-2xl md:px-10 lg:px-52">
+        <div className="text-center  px-2 mt-3 text-2xl md:px-10 ">
         <CardElement
         
         options={{

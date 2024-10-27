@@ -7,11 +7,15 @@ import { RiAdminFill } from "react-icons/ri";
 import useAdmin from "../../../Hooks/useAdmin";
 import { MdCardMembership, MdRateReview } from "react-icons/md";
 import { GiRunningNinja } from "react-icons/gi";
+import usePremium from "../../../Hooks/usePremium";
+import UserChat from "./UserChat/UserChat";
 
 const AdminSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logOut, user } = useContext(AuthContext);
   const { isAdmin, loading, error } = useAdmin();
+  const premium = usePremium()
+  console.log(premium);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -78,6 +82,7 @@ const AdminSidebar = () => {
                       <span className="ml-3">Save Jobs</span>
                     </NavLink>
                   </li>
+                 
                   <li>
                     <Link
                       to="user-profile"
@@ -158,6 +163,15 @@ const AdminSidebar = () => {
                   </li>
                   <li>
                     <Link
+                      to="/AdminChat"
+                      className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      <RiAdminFill />
+                      <span className="ml-3">Chat With User</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       to="/dashboard/resume-review"
                       className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
                     >
@@ -234,6 +248,7 @@ const AdminSidebar = () => {
           </button>
         </div>
         <div className="flex-1 overflow-auto">
+          {!isAdmin && user && premium && <UserChat></UserChat>}
           <Outlet /> {/* This will render child routes here */}
         </div>
       </div>

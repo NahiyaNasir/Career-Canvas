@@ -54,7 +54,7 @@ const ChatBox = () => {
         if (chatBoxRef.current) {
             chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
         }
-    }, [user, chatMessages]); // Dependency array includes user and chatMessages
+    }, [user, chatMessages , clearChatMessages]); // Dependency array includes user and chatMessages
 
     return (
         <div className="fixed bottom-4 right-4 z-50">
