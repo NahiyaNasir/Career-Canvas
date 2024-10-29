@@ -55,7 +55,7 @@ const Resume_Review = () => {
 
     try {
       const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
-      const response = await fetch('http://localhost:8000/api/upload', {
+      const response = await fetch('https://careen-canvas-server.vercel.app/api/upload', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the request headers
