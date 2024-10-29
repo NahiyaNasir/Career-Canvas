@@ -15,7 +15,7 @@ const AdminSidebar = () => {
   const { logOut, user } = useContext(AuthContext);
   const { isAdmin, loading, error } = useAdmin();
   const premium = usePremium()
-  console.log(premium);
+  // console.log(premium);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
