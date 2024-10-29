@@ -1,4 +1,4 @@
-import React from 'react';
+
 import useUserTemplateData from '../../../../Hooks/useUserTemplateData';
 import Resume12 from './Resume12';
 import Resume11 from './Resume11';
@@ -16,8 +16,10 @@ import Resume1 from './Resume1';
 const ResumeMe = () => {
   const data = useUserTemplateData();
   const lastData = data?.data?.[data?.data.length - 1]; // Get the last element safely
+  console.log(lastData)
   const templateId = lastData?.templateId; // Extract templateId
   // const templateId = 11 
+  console.log(templateId)
 
   if (!templateId) {
     return <p className='text-3xl text-center font-medium  mt-4 mb-4 text-green-600'>No data available...</p>; // Handle case where there's no data
