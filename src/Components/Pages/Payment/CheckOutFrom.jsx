@@ -6,6 +6,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-hot-toast";
 
 const CheckOutFrom = ({ amount }) => {
+ 
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -59,6 +60,7 @@ const CheckOutFrom = ({ amount }) => {
       // if (paymentIntent.status === "succeeded") {
       //   toast.success(paymentIntent.id);
       // }
+      const token = localStorage.getItem("token");
       const res = await axios.post("https://careen-canvas-server.vercel.app/api/payments", {
         email: user?.email,
         paymentIntentId: paymentIntent.id,
@@ -66,7 +68,13 @@ const CheckOutFrom = ({ amount }) => {
         status: "SUCCEEDED",
         userId: user?.uid,
         displayName: user?.displayName,
-      });
+      }, 
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+     
+      
       // console.log(res);
       if (res.data?.paymentIntentId) {
         toast.success(" now you are a  premium user");
