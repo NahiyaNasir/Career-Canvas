@@ -12,6 +12,8 @@ const Resume2 = (props) => {
     certificates,
     awards,
   } = props?.props;
+  console.log(props.props)
+
   return (
     <div className="w-full mx-auto bg-white p-10 shadow-lg">
       {/* Resume Title and Contact Information */}

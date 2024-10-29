@@ -1,4 +1,4 @@
-import React from 'react';
+
 import useUserTemplateData from '../../../../Hooks/useUserTemplateData';
 import { Page, Text, View, Document, PDFDownloadLink, StyleSheet } from '@react-pdf/renderer';
 import Resume12 from './Resume12';
@@ -53,6 +53,7 @@ const ResumePDF = ({ data }) => (
 const ResumeMe = () => {
   const data = useUserTemplateData();
   const lastData = data?.data?.[data?.data.length - 1]; // Get the last element safely
+  console.log(lastData)
   const templateId = lastData?.templateId; // Extract templateId
 
   if (!templateId || !lastData) {
