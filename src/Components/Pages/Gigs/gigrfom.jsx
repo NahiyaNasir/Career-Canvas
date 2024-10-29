@@ -96,7 +96,7 @@ const CreateGig = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8000/api/gigs", {
+      const response = await fetch("https://careen-canvas-server.vercel.app/api/gigs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(gigData),
