@@ -27,10 +27,10 @@ const JobRecom = () => {
 
   return (
     <div className="job-recom-container mx-auto py-10 px-4 max-w-screen-lg">
-       <h1 className='text-4xl text-center text-green-400 font-serif'>Recomended Jobs</h1>
+      <h1 className='text-4xl text-center text-green-400 font-serif'>Recomended Jobs</h1>
       {jobs?.length > 0 ? (
         <Swiper
-          slidesPerView={3} // Default: 3 slides visible on large screens
+          slidesPerView={4} // Default: 3 slides visible on large screens
           spaceBetween={30} // Spacing between cards
           slidesPerGroup={1} // Slide one card at a time
           loop={true} // Enable continuous loop mode
@@ -62,20 +62,30 @@ const JobRecom = () => {
         >
           {jobs.map((job) => (
             <SwiperSlide key={job._id}>
-              <div className="job-card bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                <h3 className="job-title text-2xl font-semibold text-gray-800 mb-2">{job.jobTitle}</h3>
-                <p className="job-company text-lg text-gray-600 mb-1">{job.company}</p>
-                <p className="job-location text-sm text-gray-500 mb-4">{job.location}</p>
-                <p className="job-type text-sm text-green-600 mb-2">{`Type: ${job.applySection.employmentType || 'N/A'}`}</p>
+              <div className="job-card bg-gradient-to-r from-green-100 to-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                <h3 className="job-title text-2xl font-serif text-gray-800 mb-2">{job.jobTitle}</h3>
+                <p className="job-company text-lg text-red-700 mb-1 flex items-center">
+                  <i className="fas fa-building mr-2 "></i>
+                  {job.company}
+                </p>
+                <p className="job-location text-sm text-gray-500 mb-4 flex items-center">
+                  <i className="fas fa-map-marker-alt mr-2"></i>
+                  {job.location}
+                </p>
+                <p className="job-type text-sm text-green-600 mb-2 flex items-center">
+                  <i className="fas fa-briefcase mr-2"></i>
+                  {`Type: ${job.employmentType || 'N/A'}`}
+                </p>
                 <Link
                   to={`/job-section`}
-                  className="inline-block bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors"
+                  className="inline-block bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors shadow-md hover:shadow-lg"
                 >
                   View Job
                 </Link>
               </div>
             </SwiperSlide>
           ))}
+
         </Swiper>
       ) : (
         <p className="text-center text-gray-500">No jobs found.</p>

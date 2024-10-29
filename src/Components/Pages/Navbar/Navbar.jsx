@@ -2,375 +2,243 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-hot-toast";
-import 'react-toastify/dist/ReactToastify.css';
-import logo from "/public/LogoCareerCanvas.png"
-
+import logo from "/public/LogoCareerCanvas.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
- // State to manage menu visibility
- const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
- // Function to close the menu
- const handleMenuClose = () => {
-   setIsMenuOpen(false);
- };
-    const handleMenuShow = () => {
-        setIsMenuVisible(true);
-    };
-
-    const handleMenuHide = () => {
-        setIsMenuVisible(false);
-    };
-    const handleMouseEnter = () => {
-        setIsOpen(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsOpen(false);
-    };
+  const handleLogOut = () => {
+    logOut()
+      .then(() => toast.success("LogOut Successful!!"))
+      .catch((error) => console.log(error.message));
+  };
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
-  }
-  const handleLogOut = () => {
-    logOut()
-      .then(() => {
-        toast.success('LogOut Successful!!');
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
   };
+
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
-      <div className="dropdown">
-      <div
-        tabIndex={0}
-        role="button"
-        className="btn btn-ghost lg:hidden"
-        onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle menu on button click
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          />
-        </svg>
-      </div>
+    <nav className="bg-white   shadow-lg  fixed top-0 left-0 right-0 z-10 text-[1rem]">
+      <div className="max-w-7xl  mx-auto px-4">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <img src={logo} alt="Logo" className="w-12 h-12" />
+            <span className="font-bold text-xl text-gray-800">Career Canvas</span>
+          </div>
 
-      {/* Dropdown Menu */}
-      {isMenuOpen && (
-        <ul
-          tabIndex={0}
-          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-        >
-          {/* Navbar Links */}
-          <NavLink
-            to="/"
-            onClick={handleMenuClose} // Close menu on link click
-            className={({ isActive }) =>
-              `ml-4 ${isActive
-                ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-xl border-b-2 border-green-500"
-                : "text-lg font-semibold"
-              }`
-            }
-          >
-            Home
-          </NavLink>
-
-          {user && (
-            <NavLink
-              to="/resume-templates/Resume_Templates"
-              onClick={handleMenuClose} // Close menu on link click
-              className={({ isActive }) =>
-                `ml-4 ${isActive
-                  ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                  : "text-lg font-semibold"
-                }`
-              }
-            >
-              Make resume
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex space-x-6 items-center">
+            <NavLink to="/" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+              Home
             </NavLink>
-          )}
-          
-          {user && (
-            <NavLink
-              to="/drag-and-drop"
-              onClick={handleMenuClose} // Close menu on link click
-              className={({ isActive }) =>
-                `ml-4 ${isActive
-                  ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                  : "text-lg font-semibold"
-                }`
-              }
-            >
-              Drag and drop
+            <NavLink to="/ai-chat" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+              CC Ai
             </NavLink>
-          )}
-
-          {user && (
-            <NavLink
-              to="/google-doc"
-              onClick={handleMenuClose} // Close menu on link click
-              className={({ isActive }) =>
-                `ml-4 ${isActive
-                  ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                  : "text-lg font-semibold"
-                }`
-              }
-            >
-              Use Google doc
+            <NavLink to="/job-section" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+              Job Posts
             </NavLink>
-          )}
-
-          <NavLink
-            to="/ai-chat"
-            onClick={handleMenuClose} // Close menu on link click
-            className={({ isActive }) =>
-              `ml-4 ${isActive
-                ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                : "text-lg font-semibold"
-              }`
+            <NavLink to="/gig-section" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+              GiGs
+            </NavLink>
+            <NavLink to="/resume-templates/Resume_Templates" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+              Virual resume
+            </NavLink>
+            <NavLink to="/google-doc" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+              Self build
+            </NavLink>
+            <NavLink to="/drag-and-drop" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+              DD
+            </NavLink>
+            {
+              !user && <>
+                <NavLink to="/signin" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+                  Signin
+                </NavLink>
+                <NavLink to="/signup" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
+                  Signup
+                </NavLink></>
             }
-          >
-            CC Ai
-          </NavLink>
 
-          <NavLink
-            to="/job-section"
-            onClick={handleMenuClose} // Close menu on link click
-            className={({ isActive }) =>
-              `ml-4 ${isActive
-                ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                : "text-lg font-semibold"
-              }`
-            }
-          >
-            Job posts
-          </NavLink>
+            {/* User Menu */}
+            {user && (
+              <div className="relative">
+                <button
+                  onClick={handleDropdownToggle}
+                  className="flex items-center text-gray-600 hover:text-green-600"
+                >
+                  {user.displayName}
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M5.5 7L10 12l4.5-5h-9z"
+                      clipRule="evenodd"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg">
+                    <Link to="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Dashboard
+                    </Link>
+                    <Link to="/dashboard/user-profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Profile
+                    </Link>
+                    <button onClick={handleLogOut} className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Log Out
+                    </button>
+                  </div>
+                )}
 
-          <NavLink
-            to="/gigCard"
-            onClick={handleMenuClose} // Close menu on link click
-            className={({ isActive }) =>
-              `ml-4 ${isActive
-                ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                : "text-lg font-semibold"
-              }`
-            }
-          >
-            GiGs
-          </NavLink>
-        </ul>
-      )}
-    </div>
-        <div className="hidden lg:flex justify-center items-center">
-          {/* <Link
-            to="/"
-            className="btn btn-ghost text-3xl font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent"
-          >
-            Career Canvas
-          </Link> */}
-          <img
-            className="w-14 h-14 md: ml-4  rounded-full"
-            // src="/public/LogoCareerCanvas.png"
-            src={logo}
-            alt="Career Canvas Logo"
-          />
+              </div>
+            )}
+
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="lg:hidden ">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-600 hover:text-green-600"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16m-8 6h8"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
-
-      {/* Desktop Links */}
-      <div className="navbar-center hidden lg:flex">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `ml-4 ${isActive
-              ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-xl border-b-2 border-green-500"
-              : "text-lg font-semibold"
-            }`
-          }
-        >
-          Home
-        </NavLink>
-
-        {
-            user && (
-              <div 
-                  className="dropdown dropdown-hover" 
-                  onMouseEnter={handleMouseEnter} 
-                  onMouseLeave={handleMouseLeave}
-              >
-                  <label tabIndex={0} className="ml-4 cursor-pointer text-lg font-semibold">
-                     <Link to="/resume-templates/Resume_Templates"> Resume Templates</Link>
-                  </label>
-                  {isOpen && (
-                      <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-1 w-52 p-3 shadow md:gap-y-3">
-                          <NavLink
-                              to="/resume-templates/Resume_Templates"
-                              className={({ isActive }) =>
-                                  `ml-4 ${isActive
-                                      ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                                      : "text-lg font-semibold"
-                                  }`
-                              }
-                          >
-                              Make resume
-                          </NavLink>
-                          <NavLink
-                              to="/drag-and-drop"
-                              className={({ isActive }) =>
-                                  `ml-4 ${isActive
-                                      ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                                      : "text-lg font-semibold"
-                                  }`
-                              }
-                          >
-                              Drag and drop
-                          </NavLink>
-                          <NavLink
-                              to="/google-doc"
-                              className={({ isActive }) =>
-                                  `ml-4 ${isActive
-                                      ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                                      : "text-lg font-semibold"
-                                  }`
-                              }
-                          >
-                              Use Google doc
-                          </NavLink>
-                      </ul>
-                  )}
-              </div>
-          )
-        }
-        <NavLink
-          to="/ai-chat"
-          className={({ isActive }) =>
-            `ml-4 ${isActive
-              ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-              : "text-lg font-semibold"
-            }`
-          }
-        >
-          CC Ai
-        </NavLink>
-        <NavLink
-          to="/job-section"
-          className={({ isActive }) =>
-            `ml-4 ${isActive
-              ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-              : "text-lg font-semibold"
-            }`
-          }
-        >
-          Job posts
-        </NavLink>
-        <NavLink
-              to="/gig-section"
-              className={({ isActive }) =>
-                `ml-4 ${isActive
-                  ? "font-extrabold bg-gradient-to-r from-green-500 to-slate-500 bg-clip-text text-transparent text-lg border-b-2 border-green-500"
-                  : "text-lg font-semibold"
-                }`
-              }
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-white shadow-md z-100 flex justify-between ">
+          <div className="px-4 py-2 space-y-2">
+            <NavLink
+              to="/"
+              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+              onClick={() => setIsMenuOpen(false)}
             >
-             GiGs
+              Home
             </NavLink>
-
-      </div>
-
-      <div className="navbar-end">
-      {user ? (
-                <div 
-                    className="relative inline-block text-left"
-                    onMouseEnter={handleMenuShow}
-                    onMouseLeave={handleMenuHide}
-                >
-                    <div className="flex items-center cursor-pointer">
-                        <Link to={'/dashboard/user-profile'}>
-                            <span className="font-bold text-green-600 text-lg">{user.displayName}</span>
-                        </Link>
-                        <svg
-                            className="w-5 h-5 ml-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 9l-7 7-7-7"
-                            ></path>
-                        </svg>
-                    </div>
-
-                    {/* Dropdown Menu */}
-                    {isMenuVisible && (
-                        <div className=" absolute right-0 mt-1 pt-2 w-48 bg-white border rounded shadow-lg z-10">
-                            <ul className="py-2">
-                                <li>
-                                    <Link
-                                        to="/dashboard"
-                                        className="block px-4 text-lg py-2 text-gray-700 hover:bg-gray-200"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to="/dashboard/loginUserProfile"
-                                        className="block px-4 text-lg py-2 text-gray-700 hover:bg-gray-200"
-                                    >
-                                        Profile
-                                    </Link>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={handleLogOut}
-                                        className="block w-full text-lg text-left px-4 py-2 text-gray-700 hover:bg-gray-200"
-                                    >
-                                        Log Out
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
+            <NavLink
+              to="/ai-chat"
+              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              CC Ai
+            </NavLink>
+            <NavLink
+              to="/job-section"
+              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Job Posts
+            </NavLink>
+            <NavLink
+              to="/gig-section"
+              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              GiGs
+            </NavLink>
+            <NavLink
+              to="/resume-templates/Resume_Templates"
+              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Virtual Resume
+            </NavLink>
+            <NavLink
+              to="/google-doc"
+              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Self build
+            </NavLink>
+            <NavLink
+              to="/drag-and-drop"
+              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              DD
+            </NavLink>
+            {
+              !user && (
+                <div className="flex flex-col gap-2">
+                  <NavLink
+                    to="/signin"
+                    className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign in
+                  </NavLink>
+                  <NavLink
+                    to="/signup"
+                    className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign up
+                  </NavLink>
                 </div>
-            ) : (
-                <>
-                    {/* Sign In Button */}
-                    <Link to="/signin" className="mr-2 px-5 py-2.5 relative rounded group overflow-hidden font-bold text-lg bg-purple-50 text-green-500 inline-block">
-                        <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 border-2 border-green-500 bg-green-500 group-hover:h-full opacity-90"></span>
-                        <span className="relative group-hover:text-white">Sign In</span>
-                    </Link>
-                    {/* Sign Up Button */}
-                    <Link to="/signup" className="px-5 py-2.5 relative rounded group overflow-hidden font-bold text-lg bg-purple-50 text-green-500 inline-block">
-                        <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 border-2 border-green-500 bg-green-500 group-hover:h-full opacity-90"></span>
-                        <span className="relative group-hover:text-white">Sign Up</span>
-                    </Link>
-                </>
-            )}
+              )
+            }
 
-      </div>
-    </div>
+
+
+          </div>
+          <div className="bg-black  rounded-l-3xl">
+            {/* User Menu for Mobile */}
+            {user && (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="block text-white hover:bg-gray-100 rounded px-4 py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  to="/dashboard/user-profile"
+                  className="block text-white hover:bg-gray-100 rounded px-4 py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Profile
+                </Link>
+                <button
+                  onClick={() => {
+                    handleLogOut();
+                    setIsMenuOpen(false);
+                  }}
+                  className="block w-full text-left text-white hover:bg-gray-100 rounded px-4 py-2"
+                >
+                  Log Out
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 
 export default Navbar;
+
+

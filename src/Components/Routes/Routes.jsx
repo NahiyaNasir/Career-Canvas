@@ -35,6 +35,10 @@ import LoginUserProfile from "../Pages/Dashboard/LoginUserProfile/LoginUserProfi
 import CreateGig from "../Pages/Gigs/gigrfom";
 
 import GigSelector from "../Pages/Gigs/GigSelector";
+import AnimatedHoverCard from "../Pages/Dashboard/AnimatedHoverCard/AnimatedHoverCard";
+import GigDetails from "../Pages/Gigs/gigDetails";
+import AdminChat from "../Pages/Dashboard/AdminChat/AdminChat";
+import UserChat from "../Pages/Dashboard/UserChat/UserChat";
 
 
 const router = createBrowserRouter([
@@ -118,8 +122,10 @@ const router = createBrowserRouter([
         path: "/applyJob",
         element: <PrivateRouter><ApplyJob></ApplyJob></PrivateRouter>
       },
-     
-
+      {
+        path:"/gig-details/:id",
+        element:<GigDetails></GigDetails>
+      }
     ]
   },
   {
@@ -157,6 +163,10 @@ const router = createBrowserRouter([
         element: <AddAdmin></AddAdmin>
       },
       {
+        path: 'myJobs',
+        element:<AnimatedHoverCard></AnimatedHoverCard>
+      },
+      {
         path: 'premium-membership',
         element: <Premium_Membership></Premium_Membership>
       },
@@ -176,10 +186,22 @@ const router = createBrowserRouter([
       {
         path: 'appliedJob',
         element: <AppliedJob></AppliedJob>
+      },
+      {
+        path: 'AdminChat',
+        element: <AdminChat></AdminChat>
+      },
+      {
+        path: 'UserChat',
+        element: <UserChat></UserChat>
       }
 
     ]
-  }
+  },
+  {
+    path: 'AdminChat',
+    element: <AdminChat></AdminChat>
+  },
 ]);
 
 

@@ -60,12 +60,12 @@ const SingIn = () => {
       <div className=" lg:w-full lg:max-w-6xl flex flex-col-reverse lg:flex-row bg-white rounded-lg  ">
 
         {/* Form Section */}
-        <div className="w-full lg:w-1/2 p-8 bg-green-500 bg-opacity-5">
+        <div className="w-full lg:w-1/2 bg-green-500 bg-opacity-5 overflow-hidden p-6">
           <h2 className="animate__animated animate__bounceIn text-3xl font-bold text-green-500 lg:mt-8 mb-2">Welcome back!</h2>
           <p className="text-black text-lg font-semibold">The faster you login, the faster you can build your resume.</p>
           <form onSubmit={handleLogin} className="mt-6">
             <div className="mb-4 animate__animated animate__lightSpeedInLeft">
-              <label className="block  text-sm font-bold mb-2" htmlFor="email">
+              <label className="block text-sm font-bold mb-2" htmlFor="email">
                 Email
               </label>
               <input
@@ -78,7 +78,7 @@ const SingIn = () => {
               />
             </div>
             <div className="mb-4 animate__animated animate__lightSpeedInRight">
-              <label className="block  text-sm font-bold mb-2" htmlFor="password">
+              <label className="block text-sm font-bold mb-2" htmlFor="password">
                 Password
               </label>
               <input
@@ -115,8 +115,9 @@ const SingIn = () => {
           </p>
         </div>
 
+
         {/* Lottie Animation Section */}
-        <div className="animate__animated animate__bounceIn w-full lg:w-1/2 flex justify-center items-center p-6 lg:p-10 bg-green-500 bg-opacity-5">
+        <div className="animate__animated animate__bounceIn w-full lg:w-1/2 flex justify-center items-center bg-green-500 bg-opacity-5">
           <Lottie animationData={signinAnimation} className="w-full h-full max-h-[400px] md:max-h-[500px] lg:max-h-[600px]" />
         </div>
       </div>

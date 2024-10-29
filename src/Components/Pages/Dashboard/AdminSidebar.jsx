@@ -7,11 +7,15 @@ import { RiAdminFill } from "react-icons/ri";
 import useAdmin from "../../../Hooks/useAdmin";
 import { MdCardMembership, MdRateReview } from "react-icons/md";
 import { GiRunningNinja } from "react-icons/gi";
+import usePremium from "../../../Hooks/usePremium";
+import UserChat from "./UserChat/UserChat";
 
 const AdminSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logOut, user } = useContext(AuthContext);
   const { isAdmin, loading, error } = useAdmin();
+  const premium = usePremium()
+  console.log(premium);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -69,6 +73,16 @@ const AdminSidebar = () => {
                       <span className="ml-3">Review Resume</span>
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink
+                      to={"/dashboard/myJobs"}
+                      className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      <MdRateReview />
+                      <span className="ml-3">Save Jobs</span>
+                    </NavLink>
+                  </li>
+                 
                   <li>
                     <Link
                       to="user-profile"
@@ -149,6 +163,15 @@ const AdminSidebar = () => {
                   </li>
                   <li>
                     <Link
+                      to="/AdminChat"
+                      className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      <RiAdminFill />
+                      <span className="ml-3">Chat With User</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       to="/dashboard/resume-review"
                       className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
                     >
@@ -170,15 +193,6 @@ const AdminSidebar = () => {
                     >
                       <RiAdminFill />
                       <span className="ml-3">Applied Job</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="user-profile"
-                      className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white"
-                    >
-                      <RiAdminFill />
-                      <span className="ml-3">Your Resume</span>
                     </Link>
                   </li>
                   <li>
@@ -224,17 +238,17 @@ const AdminSidebar = () => {
       </aside>
 
       {/* Main Content Area */}
-      {/* Main Content Area */}
-      <div className="w-full p-10 h-full flex flex-col">
+      <div className="w-full p-1 md:p-5 lg:p-10 h-full flex flex-col">
         <div className="flex justify-end">
           <button
-            className="md:hidden p-2 text-gray-300 hover:bg-gray-700"
+            className="md:hidden p-2 text-green-600 hover:bg-green-200"
             onClick={toggleSidebar}
           >
             {isOpen ? "Close Sidebar" : "Open Sidebar"}
           </button>
         </div>
         <div className="flex-1 overflow-auto">
+          {!isAdmin && user && premium && <UserChat></UserChat>}
           <Outlet /> {/* This will render child routes here */}
         </div>
       </div>
