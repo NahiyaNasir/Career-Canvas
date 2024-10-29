@@ -77,7 +77,7 @@ const ResumeReview = () => {
                             <tr key={resume.id} className="hover:bg-gray-100 transition-colors duration-200">
                                 <td className="py-3 px-6 border-b border-gray-300">{resume.userEmail}</td>
                                 <td className="py-3 px-6 border-b border-gray-300">
-                                    <a href={`http://localhost:8000/${resume.pdf}`} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+                                    <a href={`https://careen-canvas-server.vercel.app/${resume.pdf}`} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
                                         View Resume
                                     </a>
                                 </td>

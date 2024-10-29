@@ -13,7 +13,7 @@ const CheckOutFrom = ({ amount }) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/api/createPaymentIntent", { amount })
+      .post("https://careen-canvas-server.vercel.app/api/createPaymentIntent", { amount })
       .then((res) => {
         // console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
@@ -59,7 +59,7 @@ const CheckOutFrom = ({ amount }) => {
       // if (paymentIntent.status === "succeeded") {
       //   toast.success(paymentIntent.id);
       // }
-      const res = await axios.post("http://localhost:8000/api/payments", {
+      const res = await axios.post("https://careen-canvas-server.vercel.app/api/payments", {
         email: user?.email,
         paymentIntentId: paymentIntent.id,
         amount,
