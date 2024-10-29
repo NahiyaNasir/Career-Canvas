@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: 'http://localhost:8000'
+  // baseURL: 'http://localhost:8000'
  
-  // baseURL: "https://careen-canvas-server.vercel.app",
+  baseURL: "https://careen-canvas-server.vercel.app",
 });
 
 const useAxiosPublic = () => {

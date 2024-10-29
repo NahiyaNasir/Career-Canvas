@@ -13,7 +13,7 @@ const Payment = () => {
   const handleCardClick = (amount) => {
     setSelectedAmount(amount);
   };
-  const formatAmount = (amount) => (amount / 100).toFixed(2);
+  // const formatAmount = (amount) => (amount / 100).toFixed(2);
   return (
     <div>
       <div className="bg-gradient-to-r
