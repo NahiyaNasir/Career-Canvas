@@ -15,7 +15,6 @@ const GigSelector = () => {
     const [totalPages, setTotalPages] = useState(1);
     const itemsPerPage = 12;
 
-    console.log(gigsCards)
     // Fetch all gigs initially
     useEffect(() => {
         const fetchData = async () => {

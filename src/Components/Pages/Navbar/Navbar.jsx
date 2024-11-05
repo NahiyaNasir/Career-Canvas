@@ -34,9 +34,6 @@ const Navbar = () => {
             <NavLink to="/" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
               Home
             </NavLink>
-            <NavLink to="/ai-chat" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
-              CC Ai
-            </NavLink>
             <NavLink to="/job-section" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
               Job Posts
             </NavLink>
@@ -57,9 +54,7 @@ const Navbar = () => {
                 <NavLink to="/signin" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
                   Signin
                 </NavLink>
-                <NavLink to="/signup" className={({ isActive }) => isActive ? "text-green-600 font-bold" : "text-gray-600"}>
-                  Signup
-                </NavLink></>
+              </>
             }
 
             {/* User Menu */}
@@ -138,13 +133,6 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/ai-chat"
-              className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              CC Ai
-            </NavLink>
-            <NavLink
               to="/job-section"
               className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
               onClick={() => setIsMenuOpen(false)}
@@ -188,13 +176,6 @@ const Navbar = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Sign in
-                  </NavLink>
-                  <NavLink
-                    to="/signup"
-                    className={({ isActive }) => isActive ? "block text-green-600 font-bold" : "block text-gray-700"}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Sign up
                   </NavLink>
                 </div>
               )

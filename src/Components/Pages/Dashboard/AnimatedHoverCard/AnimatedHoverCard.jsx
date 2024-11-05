@@ -12,10 +12,9 @@ const AnimatedHoverCard = () => {
         const fetchSavedJobs = async () => {
             try {
                 const response = await axios.get(`/api/getSavedJobs/${user.email}`);
-                console.log(response.data.jobs);
                 setSavedJobs(response.data.jobs);
-            } catch (error) {
-                console.error(error);
+            } catch (e) {
+                console.error("Failed to fetch saved jobs", e);
             }
         };
 
@@ -24,7 +23,6 @@ const AnimatedHoverCard = () => {
             fetchSavedJobs();
         }
     }, [user, axios]);  // Include dependencies correctly
-    console.log(savedJobs);
 
     return (
         <>
@@ -57,10 +55,10 @@ const AnimatedHoverCard = () => {
                     </div>
                 ) : (
                     <>
-                     <p className="text-4xl text-center text-green-500">No saved jobs</p>
-                     <Link to={"/"} className="text-white bg-green-300 p-5 rounded-lg">See jobs</Link>
+                        <p className="text-4xl text-center text-green-500">No saved jobs</p>
+                        <Link to={"/"} className="text-white bg-green-300 p-5 rounded-lg">See jobs</Link>
                     </>
-                   
+
                 )
             }
         </>

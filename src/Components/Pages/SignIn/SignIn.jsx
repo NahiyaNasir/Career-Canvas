@@ -22,7 +22,6 @@ const SingIn = () => {
 
     const email = e.target.email.value;
     const pass = e.target.pass.value;
-    console.log(email, pass);
 
     signIn(email, pass)
       .then((result) => {
@@ -41,11 +40,9 @@ const SingIn = () => {
 
   const handleGoogle = () => {
     signInWithGoogle()
-      .then(result => {
-        console.log(result)
+      .then(() => {
         toast.success('Login Successful!!')
         navigate('/')
-
       })
       .catch(() => {
         toast.error(' Login Unsuccessful!!')

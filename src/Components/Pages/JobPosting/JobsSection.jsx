@@ -16,7 +16,6 @@ const JobsSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  console.log(jobs)
 
   // Filter
   const [experience, setExperience] = useState([]);
@@ -47,7 +46,6 @@ const JobsSection = () => {
         });
 
         setJobs(response?.data?.jobs);
-        console.log(response?.data?.jobs);
         setTotalPages(response.data.totalPages);
       } catch (error) {
         console.log(error);

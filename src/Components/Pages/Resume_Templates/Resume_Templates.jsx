@@ -7,7 +7,6 @@ import { EffectCoverflow, Pagination } from 'swiper/modules';
 import './styles.css';
 import { Outlet, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
 import { FormContext } from "../../Providers/FormContext";
 
 const images = [
@@ -27,10 +26,7 @@ const images = [
 
 const Resume_Templates = () => {
     const navigate = useNavigate();
-    const { setTemplateId } = useContext(FormContext);
-    const { resumeId } = useContext(AuthContext);
-    console.log(resumeId);
-    
+    const { setTemplateId } = useContext(FormContext);    
     const handleImageClick = (resumeType, r) => {
         setTemplateId(r);
         navigate('/resume-templates/personal-info-form', { state: { resumeType } });
